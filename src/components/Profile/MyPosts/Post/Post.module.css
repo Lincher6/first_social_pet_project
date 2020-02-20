@@ -1,0 +1,23 @@
+.post {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 5px;
+    justify-items: center;
+}
+
+.post img {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+
+.message {
+    flex-grow: 1;
+}
+
+.likes {
+    width: 50px;
+}

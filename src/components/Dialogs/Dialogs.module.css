@@ -1,0 +1,13 @@
+.dialogsWrapper {
+    display: grid;
+    grid-template-columns: 2fr 7fr;
+}
+
+.users {
+    padding: 5px;
+    border-right: 3px solid grey;
+}
+
+.messages {
+    padding: 5px;
+}

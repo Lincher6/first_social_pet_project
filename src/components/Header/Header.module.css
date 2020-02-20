@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    grid-area: h;
+    background-color: whitesmoke;
+    vertical-align: middle;
+}
+.header img {
+    width: 60px;
+    margin: auto 10px;
+}

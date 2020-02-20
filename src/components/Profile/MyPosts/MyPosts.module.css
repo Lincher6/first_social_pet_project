@@ -1,0 +1,15 @@
+.MyPosts {
+    padding: 10px;
+}
+
+.newPost {
+    margin: 10px;
+}
+
+.newPost textarea {
+    width: 100%;
+}
+
+.posts {
+
+}
