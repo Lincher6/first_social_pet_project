@@ -3,6 +3,15 @@ import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 const MyPosts = props => {
+    const state = {
+        postData: [
+            {id: 1, postText: 'Hi, how are you?', likes: 5},
+            {id: 2, postText: 'It\'s my first post', likes: 13},
+            {id: 3, postText: 'Now second', likes: 22},
+            {id: 4, postText: 'And final', likes: 1},
+        ]
+    }
+
     return(
         <div className={classes.MyPosts}>
             My posts
@@ -10,10 +19,15 @@ const MyPosts = props => {
                 <textarea name="" id="" defaultValue='text'></textarea>
             </div>
             <div className={classes.posts}>
-                <Post message={'Hi, how are you?'} likes={6}/>
-                <Post message={'It\'s my first post'} likes={5}/>
-                <Post message={'Now second'} likes={4}/>
-                <Post message={'And final'} likes={3}/>
+                {state.postData.map((item, index) => {
+                    return (
+                        <Post
+                            key={index}
+                            message={item.postText}
+                            likes={item.likes}
+                        />
+                    )
+                })}
             </div>
         </div>
     )

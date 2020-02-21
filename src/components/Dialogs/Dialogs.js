@@ -4,18 +4,43 @@ import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 
 const Dialogs = props => {
+    const state = {
+        dialogsData: [
+            {id: 1, name: 'Dimon'},
+            {id: 2, name: 'Masha'},
+            {id: 3, name: 'Dasha'},
+            {id: 4, name: 'Pasha'},
+        ],
+        messageData: [
+            {id: 1, message: 'Hi'},
+            {id: 2, message: 'My first message'},
+            {id: 3, message: 'and second'},
+        ]
+    }
+
     return(
         <div className={classes.dialogsWrapper}>
             <div className={classes.users}>
-                <Dialog name='Dimon' id={1}/>
-                <Dialog name='Masha' id={2}/>
-                <Dialog name='Dasha' id={3}/>
-                <Dialog name='Pasha' id={4}/>
+                {state.dialogsData.map((item, index) => {
+                    return (
+                        <Dialog
+                            key={index}
+                            name={item.name}
+                            id={item.id}
+                        />
+                    )
+                })}
             </div>
             <div className={classes.messages}>
-                <Message text='Hi'/>
-                <Message text='My first message'/>
-                <Message text='and second'/>
+                {state.messageData.map((item, index) => {
+                    return (
+                        <Message
+                            key={index}
+                            text={item.message
+                            }
+                        />
+                    )
+                })}
             </div>
         </div>
     )
