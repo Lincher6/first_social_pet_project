@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from "./components/redux/store";
+import store from "./redux/store";
 
 let renderEntireTree = (store) => {
     ReactDOM.render(
