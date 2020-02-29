@@ -1,25 +1,38 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
+import {addPostActionCreator, updateNewPostActionCreator} from "../../redux/store";
 
 const MyPosts = props => {
-    const state = {
-        postData: [
-            {id: 1, postText: 'Hi, how are you?', likes: 5},
-            {id: 2, postText: 'It\'s my first post', likes: 13},
-            {id: 3, postText: 'Now second', likes: 22},
-            {id: 4, postText: 'And final', likes: 1},
-        ]
+    let textAreaRef = React.createRef()
+
+    const addPost = () => {
+        props.dispatch(addPostActionCreator())
+    }
+
+    const updateNewPost = () => {
+        const text = textAreaRef.current.value
+        props.dispatch(updateNewPostActionCreator(text))
     }
 
     return(
         <div className={classes.MyPosts}>
             My posts
             <div className={classes.newPost}>
-                <textarea name="" id="" defaultValue='text'></textarea>
+                <textarea
+                    ref={textAreaRef}
+                    value={props.state.newPost}
+                    onChange={updateNewPost}
+                >
+                </textarea>
+                <button
+                    onClick={addPost}
+                >
+                    Добавить Пост
+                </button>
             </div>
             <div className={classes.posts}>
-                {state.postData.map((item, index) => {
+                {props.state.posts.map((item, index) => {
                     return (
                         <Post
                             key={index}
