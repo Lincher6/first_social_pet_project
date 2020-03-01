@@ -1,0 +1,9 @@
+.messages {
+    padding: 5px;
+}
+
+textarea {
+    display: block;
+    margin: 10px 0px;
+    width: 80%;
+}
