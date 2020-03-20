@@ -1,7 +1,17 @@
 .nav {
-    grid-area: n;
-    background-color: burlywood;
-    padding: 20px;
+    padding: 5px;
+    width: 90px;
+    box-sizing: border-box;
+    position: fixed;
+    background: black;
+    height: 100vh;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .4);
+}
+
+.logo img {
+    width: 50px;
+    display: block;
+    margin: 10px auto 20px auto;
 }
 
 NavLink {
@@ -9,14 +19,18 @@ NavLink {
 }
 
 .item {
-    margin-bottom: 5px;
+    width: 80px;
+    height: 80px;
+    margin: 5px auto;
+    text-align: center ;
 }
 
 .item a {
-    color: white;
+    font-weight: bold;
+    color: red;
     text-decoration: none;
 }
 
 .item .active {
-    color: gold;
+    color: grey;
 }

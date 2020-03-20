@@ -7,14 +7,8 @@ const DialogsPage = props => {
 
     return(
         <div className={classes.dialogsWrapper}>
-            <Dialogs
-                state={props.state}
-                dispatch={props.dispatch}
-            />
-            <Messages
-                state={props.state}
-                dispatch={props.dispatch}
-            />
+            <Dialogs/>
+            <Messages/>
         </div>
     )
 }

@@ -1,20 +1,28 @@
 import React from 'react';
-import './App.css';
+import classes from './App.module.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import ProfilePage from './components/ProfilePage/ProfilePage';
 import DialogsPage from "./components/DialogsPage/DialogsPage";
 import {BrowserRouter, Route} from "react-router-dom";
+import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/ProfilePage/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import LoginContainer from "./components/Auth/Login/LoginContainer";
 
 const App = (props) => {
     return (
         <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header/>
+            <div className={classes.appWrapper}>
                 <Navbar/>
-                <div className='app-wrapper-content'>
-                    <Route path={'/profile'} render={ () => <ProfilePage state={props.state.profilePage} dispatch={props.dispatch} />}/>
-                    <Route path={'/dialogs'} render={ () => <DialogsPage state={props.state.dialogsPage} dispatch={props.dispatch} />}/>
+                <div className={classes.mainWrapper}>
+                    <HeaderContainer/>
+                    <div className={classes.content}>
+                        <Route path={'/profile/:userId?'} component={ProfileContainer}/>
+                        <Route path={'/dialogs'} component={DialogsPage}/>
+                        <Route path={'/users'} component={UsersContainer}/>
+                        <Route path={'/login'} component={LoginContainer}/>
+                    </div>
+                    <footer>sdasad</footer>
                 </div>
             </div>
         </BrowserRouter>)

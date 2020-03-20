@@ -1,10 +1,38 @@
-.header {
-    display: flex;
-    grid-area: h;
-    background-color: whitesmoke;
-    vertical-align: middle;
+.headerWrapper {
+    width: 100%;
+    background: #1f2023;
+    margin-bottom: 10px;
 }
-.header img {
-    width: 60px;
-    margin: auto 10px;
+
+.header {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 2fr 4fr 4fr 3fr;
+    align-content: center;
+    padding: 5px 15px;
+    color: red;
+}
+
+.logo img {
+    width: 50px;
+    display: block;
+}
+
+.auth {
+    margin: auto 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    font-family: Arial;
+    text-decoration: none;
+}
+
+.auth a {
+    color: inherit;
+}
+
+a:hover {
+    text-shadow: 0 0 5px red;
 }

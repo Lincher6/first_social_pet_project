@@ -2,20 +2,16 @@ import React from "react";
 import classes from './Messages.module.css'
 import Message from "./Message/Message";
 import {addMessageActionCreator, updateNewMessageActionCreator} from "../../../redux/dialogsReducer";
+import {connect} from "react-redux";
 
 const Messages = props => {
     const updateNewMessage = (event) => {
-        const newMessageText = event.target.value
-        props.dispatch(updateNewMessageActionCreator(newMessageText))
-    }
-
-    const addMessage = () => {
-        props.dispatch(addMessageActionCreator())
+        props.updateNewMessage(event.target.value)
     }
 
     return(
         <div className={classes.messages}>
-            {props.state.messages.map((item, index) => {
+            {props.messages.map((item, index) => {
                 return (
                     <Message
                         key={index}
@@ -26,11 +22,11 @@ const Messages = props => {
             })}
 
             <textarea
-                value={props.state.newMessage}
+                value={props.newMessage}
                 onChange={updateNewMessage}
             ></textarea>
             <button
-                onClick={addMessage}
+                onClick={props.addMessage}
             >
                 Отправить сообщение
             </button>
@@ -38,4 +34,14 @@ const Messages = props => {
     )
 }
 
-export default Messages
+const mapStateToProps = (state) => ({
+    messages: state.dialogsReducer.messages,
+    newMessage: state.dialogsReducer.newMessage
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    addMessage: () => dispatch(addMessageActionCreator()),
+    updateNewMessage: (text) => dispatch(updateNewMessageActionCreator(text))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages)

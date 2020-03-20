@@ -1,0 +1,8 @@
+.login {
+    background: darkgrey;
+    margin: 100px auto;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 500px;
+    height: 200px;
+}

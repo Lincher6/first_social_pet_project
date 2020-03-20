@@ -1,0 +1,86 @@
+.users {
+    padding: 15px;
+
+}
+
+.pageNumbers {
+    color: grey;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.pageNumber {
+    cursor: pointer;
+}
+
+.currentPage {
+    font-weight: bold;
+    color: white;
+}
+
+.user {
+    width: border-box;
+    background: rgba(200, 200, 200, 1);
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, .50);
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-gap: 10px;
+}
+
+.user img {
+    border: 2px solid grey;
+    display: block;
+    margin: auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+
+}
+
+.userLeft {
+    display: grid;
+    align-content: center;
+    grid-gap: 5px;
+}
+
+.userRight {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
+    border: 1px solid rgba(100, 100, 100, .50);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.infoLeft {
+    display: grid;
+}
+
+.infoRight {
+    color: rgba(100, 100, 100, 1);
+}
+
+.name {
+    font-size: 25px;
+    align-self: start;
+    font-weight: bold;
+    color: rgba(250, 50, 50, 1);
+    text-shadow: 1px 1px 2px black;
+}
+
+.status {
+    overflow:hidden;
+    align-self: end;
+    color: rgba(100, 100, 100, 1);
+    font-family: "Comic Sans MS", aerial;
+}
+
+.infoRight {
+
+}
+
+a {
+    text-decoration: none;
+}

@@ -1,11 +1,13 @@
 import React from "react";
 import classes from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
+import {connect} from "react-redux";
 
 const Dialogs = props => {
+    console.log(props)
     return(
         <div className={classes.users}>
-            {props.state.dialogs.map((item, index) => {
+            {props.dialogs.map((item, index) => {
                 return (
                     <Dialog
                         key={index}
@@ -18,4 +20,12 @@ const Dialogs = props => {
     )
 }
 
-export default Dialogs
+const mapStateToProps = (state) => ({
+    dialogs: state.dialogsReducer.dialogs
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dialogs)

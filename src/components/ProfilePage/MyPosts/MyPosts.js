@@ -1,43 +1,43 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/profileReducer";
+import {Field, reduxForm} from "redux-form";
+import Button from "../../common/Button/Button";
+import TextArea from "../../common/TextArea/TextArea";
 
 const MyPosts = props => {
-    let textAreaRef = React.createRef()
-
-    const addPost = () => {
-        props.dispatch(addPostActionCreator())
+    const addPost = (values) => {
+        console.log(values)
+        props.addPost(values.newPostText)
     }
 
-    const updateNewPost = () => {
-        const text = textAreaRef.current.value
-        props.dispatch(updateNewPostActionCreator(text))
-    }
+    const AddPostForm = (props) => (
+        <form className={classes.newPost} onSubmit={props.handleSubmit}>
+            <div>
+                <Field component={TextArea} name={'newPostText'} placeholder={'New Post Text'}/>
+            </div>
+            <div>
+                <Button>Добавить Пост</Button>
+            </div>
+        </form>
+    )
+
+    const AddPostReduxForm = reduxForm({form: 'addPost'})(AddPostForm)
 
     return(
         <div className={classes.MyPosts}>
-            My posts
-            <div className={classes.newPost}>
-                <textarea
-                    ref={textAreaRef}
-                    value={props.state.newPost}
-                    onChange={updateNewPost}
-                >
-                </textarea>
-                <button
-                    onClick={addPost}
-                >
-                    Добавить Пост
-                </button>
+            <div className={classes.title}>
+                My posts
             </div>
+            <AddPostReduxForm onSubmit={addPost}/>
             <div className={classes.posts}>
-                {props.state.posts.map((item, index) => {
+                {props.posts.map((item, index) => {
                     return (
                         <Post
                             key={index}
                             message={item.postText}
                             likes={item.likes}
+                            smallPicture={props.photos.small}
                         />
                     )
                 })}

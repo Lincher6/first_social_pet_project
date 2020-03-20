@@ -1,0 +1,15 @@
+.base {
+    padding: 5px;
+    min-height: 50px;
+    max-height: 200px;
+    box-sizing: border-box;
+    background: white;
+    box-shadow: 1px 1px 1px 1px black;
+    border-radius: 2px;
+    color: black;
+    outline: 2px red;
+}
+
+.base:focus {
+    border: 1px solid red;
+}

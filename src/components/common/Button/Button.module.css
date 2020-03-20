@@ -1,0 +1,16 @@
+.base {
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    background: red;
+    box-shadow: 1px 1px 0 black;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+    outline: none;
+}
+
+.base:active {
+    transform: translateX(1px) translateY(1px);
+    box-shadow: inset 2px 2px 4px 1px rgba(0, 0, 0, .4);
+}

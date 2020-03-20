@@ -3,13 +3,22 @@
 }
 
 .newPost {
-    margin: 10px;
+
 }
 
-.newPost textarea {
-    width: 100%;
+.newPost  {
+    margin-bottom: 10px;
 }
 
 .posts {
 
+}
+
+.title {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 0 black;
+    margin-bottom: 5px;
 }

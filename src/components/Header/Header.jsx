@@ -1,13 +1,31 @@
 import React from 'react';
 import classes from './Header.module.css'
+import {NavLink, Redirect} from "react-router-dom";
+import logo from '../../assets/umbrella-logo.png'
 
-const Header = () => {
-    return <header className={classes.header}>
-        <img
-            src='https://thegoose.shop/wp-content/uploads/2018/04/logo_gus-1.png'
-            alt=''
-        />
-    </header>
+const Header = (props) => {
+    return <div className={classes.headerWrapper}>
+        <header className={classes.header}>
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+
+            <div className={classes.auth}>
+                <div>
+                    {props.isAuthorized
+                        ? <NavLink to={`/profile`}>{props.login}</NavLink>
+                        : <NavLink to={`/login`}>LOGIN</NavLink>}
+                </div>
+            </div>
+
+        </header>
+    </div>
 }
 
 export default Header;
