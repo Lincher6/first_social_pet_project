@@ -1,36 +1,45 @@
 .nav {
-    padding: 5px;
     width: 90px;
     box-sizing: border-box;
     position: fixed;
     background: black;
     height: 100vh;
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .4);
 }
 
 .logo img {
     width: 50px;
+    margin: 15px auto 30px auto;
+}
+
+img {
+    margin: 0 auto;
     display: block;
-    margin: 10px auto 20px auto;
+    width: 40px;
 }
 
-NavLink {
-
-}
-
-.item {
-    width: 80px;
-    height: 80px;
-    margin: 5px auto;
+.page {
+    width: 90px;
+    height: 90px;
+    margin: 20px auto;
     text-align: center ;
 }
 
-.item a {
+.item {
+
+}
+
+.page a {
     font-weight: bold;
-    color: red;
+    color: firebrick;
     text-decoration: none;
 }
 
-.item .active {
-    color: grey;
+.page a:hover {
+    color: orangered;
+}
+
+.active .item {
+    color: orange;
+    border-right: 4px solid red;
+    transition: border-right-width .1s ease-in-out;
 }

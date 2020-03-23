@@ -1,47 +1,48 @@
 import React from "react";
 import classes from './Messages.module.css'
 import Message from "./Message/Message";
-import {addMessageActionCreator, updateNewMessageActionCreator} from "../../../redux/dialogsReducer";
-import {connect} from "react-redux";
+import Button from "../../common/Button/Button";
+import {Field, reduxForm} from "redux-form";
+import {FormComponent} from "../../common/TextArea/TextArea";
+import {maxLength, required} from "../../../validators/validators";
 
 const Messages = props => {
-    const updateNewMessage = (event) => {
-        props.updateNewMessage(event.target.value)
+    const maxLength100 = maxLength(100)
+    const TextField = FormComponent('textarea');
+
+    const NewMessageForm = (props) => (
+        <form onSubmit={props.handleSubmit}>
+            <Field
+                component={TextField}
+                name={'newMessage'}
+                placeholder={'New Message'}
+                validate={[required, maxLength100]}
+            />
+            <Button>Отправить сообщение</Button>
+        </form>
+    )
+
+    const NewMessageReduxForm = reduxForm({
+        form: 'newMessage'
+    })(NewMessageForm)
+
+    const addMessage = (values) => {
+        props.addMessage(values.newMessage)
     }
 
-    return(
-        <div className={classes.messages}>
+
+    return <div className={classes.messages}>
             {props.messages.map((item, index) => {
                 return (
                     <Message
                         key={index}
-                        text={item.message
-                        }
+                        text={item.message}
                     />
                 )
             })}
 
-            <textarea
-                value={props.newMessage}
-                onChange={updateNewMessage}
-            ></textarea>
-            <button
-                onClick={props.addMessage}
-            >
-                Отправить сообщение
-            </button>
+            <NewMessageReduxForm onSubmit={addMessage}/>
         </div>
-    )
 }
 
-const mapStateToProps = (state) => ({
-    messages: state.dialogsReducer.messages,
-    newMessage: state.dialogsReducer.newMessage
-})
-
-const mapDispatchToProps = (dispatch) => ({
-    addMessage: () => dispatch(addMessageActionCreator()),
-    updateNewMessage: (text) => dispatch(updateNewMessageActionCreator(text))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Messages)
+export default Messages

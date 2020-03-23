@@ -1,31 +1,33 @@
 import React from 'react';
 import classes from './Header.module.css'
-import {NavLink, Redirect} from "react-router-dom";
-import logo from '../../assets/umbrella-logo.png'
+import {NavLink} from "react-router-dom";
+import ProfileSmall from "./ProfileSmall/ProfileSmall";
 
 const Header = (props) => {
     return <div className={classes.headerWrapper}>
-        <header className={classes.header}>
-            <div>
-
-            </div>
-            <div>
-
-            </div>
-            <div>
-
-            </div>
-
-            <div className={classes.auth}>
+            <header className={classes.header}>
                 <div>
-                    {props.isAuthorized
-                        ? <NavLink to={`/profile`}>{props.login}</NavLink>
-                        : <NavLink to={`/login`}>LOGIN</NavLink>}
+                    NAME
                 </div>
-            </div>
+                <div>
+                    LIKES COUNT
+                </div>
 
-        </header>
-    </div>
+                <div className={classes.auth}>
+                    <div>
+                        {props.isAuthorized
+                            ? <ProfileSmall
+                                login={props.login}
+                                logout={props.logout}
+                                likes={props.likes}
+                                {...props.userData}/>
+                            : <NavLink to={`/login`}>LOGIN</NavLink>}
+                    </div>
+                </div>
+
+            </header>
+            <div className={classes.bottom}></div>
+        </div>
 }
 
 export default Header;

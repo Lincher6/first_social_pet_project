@@ -1,0 +1,50 @@
+.profileSmall {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.profileSmall>div {
+    max-width: 150px;
+    margin-left: 10px;
+}
+
+.photoSmall {
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.options {
+    position: relative;
+    margin-left: 5px;
+}
+
+.options .menu {
+    z-index: 100;
+    width: 200px;
+    right: 0;
+    position: absolute;
+    overflow: hidden;
+    max-height: 0px;
+}
+
+.options:hover .menu {
+    transition: max-height 1s ease-in-out;
+    max-height: 300px;
+}
+
+.options img:hover {
+    transform: rotate(180deg);
+    transition: transform 1s ease-in-out;
+}
+
+.name {
+    overflow: hidden;
+    color: orange;
+    text-shadow: 2px 2px 2px red;
+}
+
+.likes {
+    overflow: hidden;
+    color: grey;
+    font-size: 14px;
+}

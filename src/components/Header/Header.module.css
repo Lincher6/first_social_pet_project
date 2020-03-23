@@ -1,5 +1,4 @@
 .headerWrapper {
-    width: 100%;
     background: #1f2023;
     margin-bottom: 10px;
 }
@@ -7,12 +6,12 @@
 .header {
     max-width: 1200px;
     margin: 0 auto;
-    height: 60px;
+    height: 55px;
     display: grid;
-    grid-template-columns: 2fr 4fr 4fr 3fr;
+    grid-template-columns: 3fr 2fr 2fr;
     align-content: center;
     padding: 5px 15px;
-    color: red;
+    color: firebrick;
 }
 
 .logo img {
@@ -33,6 +32,8 @@
     color: inherit;
 }
 
-a:hover {
-    text-shadow: 0 0 5px red;
+.bottom {
+    position: relative;
+    height: 5px;
+    background: linear-gradient(orange, black);
 }

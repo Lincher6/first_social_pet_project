@@ -1,27 +1,47 @@
 import React from 'react'
 import classes from './Login.module.css'
 import {Field, reduxForm} from "redux-form";
+import {CheckBox, FormComponent} from "../../common/TextArea/TextArea";
+import Button from "../../common/Button/Button";
+import {maxLength, minLength, required} from "../../../validators/validators";
 
 const Login = (props) => {
+    const maxLength20 = maxLength(20)
+    const minLength20 = minLength(5)
+    const InputField = FormComponent('input');
 
     const LoginForm = (props) => {
         return <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={'input'} placeholder={'login'} name={'login'}/>
+                <Field
+                    component={InputField}
+                    placeholder={'Логин'}
+                    name={'login'}
+                    validate={[required, maxLength20, minLength20]}
+                />
             </div>
             <div>
-                <Field component={'input'} placeholder={'password'} name={'password'}/>
+                <Field
+                    component={InputField}
+                    placeholder={'Пароль'}
+                    name={'password'}
+                    type={'password'}
+                    validate={[required, maxLength20, minLength20]}/>
+
+            </div>
+            <div className={classes.rememberMe}>
+                <Field component={CheckBox} type={'checkbox'} name={'rememberMe'}/>
+                <div className={classes.text}>
+                    Запомнить меня
+                </div>
             </div>
             <div>
-                <Field component={'input'} type={'checkbox'} name={'rememberMe'}/>Remember me
-            </div>
-            <div>
-                <button>Submit</button>
+                <Button>Войти</Button>
             </div>
         </form>
     }
 
-    const LoginReduxReducer = reduxForm({
+    const LoginReduxForm = reduxForm({
         form: 'login',
     })(LoginForm)
 
@@ -31,7 +51,9 @@ const Login = (props) => {
 
     return (
         <div className={classes.login}>
-            <LoginReduxReducer onSubmit={onSubmit}/>
+            <div className={classes.title}>Вход</div>
+            <LoginReduxForm onSubmit={onSubmit}/>
+            {props.authError ? <div className={classes.error}>Неверный логин или пароль</div>: null}
         </div>
     )
 }

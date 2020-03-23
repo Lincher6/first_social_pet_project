@@ -55,5 +55,10 @@ export const authAPI = {
             password: data.password,
             rememberMe: data.rememberMe
         }).then(response => response.data)
+    },
+
+    logout: () => {
+        return axiosInstance.delete(`/auth/login`)
+            .then(response => response.data)
     }
 }

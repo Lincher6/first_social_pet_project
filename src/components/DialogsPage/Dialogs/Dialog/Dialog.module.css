@@ -1,5 +1,5 @@
 .dialog {
-
+    color: white;
 }
 
 .dialog .active {
@@ -8,5 +8,5 @@
 
 .dialog a {
     text-decoration: none;
-    color: black;
+    color: white;
 }

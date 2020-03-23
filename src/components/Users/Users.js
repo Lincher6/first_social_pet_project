@@ -29,7 +29,7 @@ const Users = props => {
                 props.users.map((user) => (
                     <div className={classes.user} key={user.id}>
                         <div className={classes.userLeft}>
-                            <img src={user.photos.small != null ? user.photos.small : userPhoto}/>
+                            <img src={user.photos.small != null ? user.photos.small : userPhoto} alt=''/>
                             {
                                 user.followed
                                     ? <button

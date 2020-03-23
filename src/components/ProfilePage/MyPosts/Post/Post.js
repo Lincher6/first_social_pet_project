@@ -5,7 +5,7 @@ import noPhoto from '../../../../assets/empty-avatar.png'
 const Post = props => {
     return(
         <div className={classes.post}>
-            <img src={props.smallPicture || noPhoto}/>
+            <img src={props.smallPicture || noPhoto} alt=''/>
             <div className={classes.message}>
                 {props.message}
             </div>

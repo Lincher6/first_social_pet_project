@@ -1,4 +1,4 @@
-import {ADD_MESSAGE, UPDATE_NEW_MESSAGE} from "./actionTypes";
+import {ADD_MESSAGE} from "./actionTypes";
 
 let initialState = {
     dialogs: [
@@ -20,17 +20,11 @@ export const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE:
             let newMessage = {
                 id: 4,
-                message: state.newMessage
+                message: action.message
             }
             return {
                 ...state,
-                messages: [...state.messages, newMessage],
-                newMessage: ''
-            }
-        case UPDATE_NEW_MESSAGE:
-            return {
-                ...state,
-                newMessage: action.text
+                messages: [...state.messages, newMessage]
             }
         default:
             return state
@@ -38,10 +32,6 @@ export const dialogsReducer = (state = initialState, action) => {
 }
 
 
-export const addMessageActionCreator = () => (
-    {type: ADD_MESSAGE}
-)
-
-export const updateNewMessageActionCreator = (text) => (
-    {type: UPDATE_NEW_MESSAGE, text}
+export const addMessage = (message) => (
+    {type: ADD_MESSAGE, message}
 )

@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import Login from "./Login";
 import {login} from "../../../redux/authReducer";
+import ProfileContainer from "../../ProfilePage/ProfileContainer";
 
 class LoginContainer extends Component {
     componentDidMount() {
@@ -11,14 +12,13 @@ class LoginContainer extends Component {
     }
 
     render() {
-        return (
-            <Login {...this.props}/>
-        )
+        return this.props.isAuthorized ? <Redirect to={'/profile'}/> : <Login {...this.props}/>
     }
 }
 
 const mapStateToProps = state => ({
-    isAuthorized: state.authReducer.isAuthorized
+    isAuthorized: state.authReducer.isAuthorized,
+    authError: state.authReducer.authError
 })
 
 const mapDispatchToProps = {
