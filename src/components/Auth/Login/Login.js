@@ -38,6 +38,7 @@ const Login = (props) => {
             <div>
                 <Button>Войти</Button>
             </div>
+            {props.error && <div className={classes.error}>{props.error}</div>}
         </form>
     }
 

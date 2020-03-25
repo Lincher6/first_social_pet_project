@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {Field, Form, reduxForm} from "redux-form";
+import {Field, reduxForm} from "redux-form";
 import Button from "../../common/Button/Button";
 import {FormComponent} from "../../common/TextArea/TextArea";
 import {maxLength, required} from "../../../validators/validators";
@@ -25,7 +25,7 @@ const MyPosts = props => {
                     validate={[required, maxLength50]}
                 />
             </div>
-            <div>
+            <div style={{marginTop: '-15px'}}>
                 <Button>Добавить Пост</Button>
             </div>
         </form>
@@ -34,22 +34,21 @@ const MyPosts = props => {
     const AddPostReduxForm = reduxForm({form: 'addPost'})(AddPostForm)
 
     return(
-        <div className={classes.MyPosts}>
-            <div className={classes.title}>
-                My posts
-            </div>
-            <AddPostReduxForm onSubmit={addPost}/>
-            <div className={classes.posts}>
-                {props.posts.map((item, index) => {
-                    return (
-                        <Post
-                            key={index}
-                            message={item.postText}
-                            likes={item.likes}
-                            smallPicture={props.photos.small}
-                        />
-                    )
-                })}
+        <div>
+            <div className={classes.MyPosts}>
+                <AddPostReduxForm onSubmit={addPost}/>
+                <div className={classes.posts}>
+                    {props.posts.map((item, index) => {
+                        return (
+                            <Post
+                                key={index}
+                                message={item.postText}
+                                likes={item.likes}
+                                smallPicture={props.photos.small}
+                            />
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )

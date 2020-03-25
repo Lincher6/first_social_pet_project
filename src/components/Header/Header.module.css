@@ -14,9 +14,17 @@
     color: firebrick;
 }
 
-.logo img {
-    width: 50px;
-    display: block;
+.appName {
+    font-size: 50px;
+    font-family: "Book Antiqua";
+    font-weight: bold;
+    color: white;
+    text-shadow: 3px 3px 0px red;
+}
+
+.search {
+    display: grid;
+    align-content: center;
 }
 
 .auth {
@@ -28,12 +36,20 @@
     text-decoration: none;
 }
 
-.auth a {
-    color: inherit;
-}
-
 .bottom {
     position: relative;
     height: 5px;
     background: linear-gradient(orange, black);
 }
+
+.login {
+    color: yellow;
+    text-shadow: 2px 2px 2px red;
+    margin-bottom: 5px;
+}
+
+.register {
+    color: lightgrey;
+    font-size: 14px;
+}
+

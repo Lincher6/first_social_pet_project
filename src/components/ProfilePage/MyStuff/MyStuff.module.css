@@ -1,0 +1,16 @@
+.myStuff {
+    border-radius: 5px;
+    background: lightgrey;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: content-box;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.myStuff>div {
+    background: whitesmoke;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 1px 1px grey;
+    cursor: pointer;
+}

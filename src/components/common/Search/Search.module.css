@@ -1,0 +1,31 @@
+.searchField {
+    display: flex;
+    background: rgba(50, 50, 50, 1);
+    border-radius: 15px;
+    padding: 5px;
+    row-gap: 10px;
+    margin: auto 0;
+}
+
+.searchField>div {
+    margin: 0 5px;
+    color: white;
+}
+
+.searchIcon {
+    display: grid;
+    align-content: center;
+}
+
+.searchIcon:hover {
+    color: red;
+    cursor: pointer;
+}
+
+
+.searchField input {
+    background: transparent;
+    outline: none;
+    border: none;
+    color: white;
+}

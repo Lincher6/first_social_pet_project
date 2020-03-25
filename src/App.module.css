@@ -1,5 +1,6 @@
 .appWrapper {
     width: 100%;
+    animation: appear 1s linear;
 }
 
 .mainWrapper {
@@ -26,4 +27,13 @@
     height: 100%;
     background: radial-gradient(rgba(250, 0, 0, .2) 0%, rgba(250, 0, 0, 0) 40%);
     z-index: 100;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

@@ -4,7 +4,6 @@ import {Redirect, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import Login from "./Login";
 import {login} from "../../../redux/authReducer";
-import ProfileContainer from "../../ProfilePage/ProfileContainer";
 
 class LoginContainer extends Component {
     componentDidMount() {

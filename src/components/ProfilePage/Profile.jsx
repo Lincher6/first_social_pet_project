@@ -1,6 +1,8 @@
 import React from 'react';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import classes from './Profile.module.css'
+import MyStuff from "./MyStuff/MyStuff";
 
 const Profile = (props) => {
     return (
@@ -10,11 +12,15 @@ const Profile = (props) => {
                 profileStatus={props.profileStatus}
                 setProfileStatus={props.setProfileStatus}
             />
-            <MyPosts
-                {...props.profile}
-                posts={props.posts}
-                addPost={props.addPost}
-            />
+            <div className={classes.profileContent}>
+                <MyStuff/>
+                <MyPosts
+                    {...props.profile}
+                    posts={props.posts}
+                    addPost={props.addPost}
+                />
+            </div>
+
         </div>
     )
 }

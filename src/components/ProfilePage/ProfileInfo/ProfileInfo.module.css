@@ -1,7 +1,8 @@
 .info {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 4fr 7fr;
+    grid-template-columns: 1fr 2fr;
+    animation: infoAppear .5s ease-out;
 }
 
 .avatar img {
@@ -13,11 +14,30 @@
 .description {
     color: white;
     padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.characteristic {
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px red;
 }
 
 .name {
     font-weight: bold;
-    color: red;
+    color: orange;
     font-size: 24px;
-    text-shadow: 1px 1px 2px black;
+    text-shadow: 2px 2px 2px red;
+}
+
+@keyframes infoAppear {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
