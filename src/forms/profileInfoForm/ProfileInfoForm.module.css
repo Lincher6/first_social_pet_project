@@ -1,0 +1,22 @@
+.form {
+    position: relative;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    align-items: center;
+    margin: 0;
+}
+
+.char {
+    color: firebrick;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px black;
+}
+
+.button {
+    position: absolute;
+    right: 0;
+    top: -30px;
+}

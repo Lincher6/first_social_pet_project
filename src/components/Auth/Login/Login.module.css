@@ -1,5 +1,5 @@
 .login {
-    background: grey;
+    background: #242526;
     margin: 80px auto;
     border-radius: 5px;
     padding: 20px;
@@ -20,6 +20,7 @@
 .rememberMe {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .rememberMe .text {

@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './Search.module.css'
-import { FaSearch} from "react-icons/all";
+import {FaSearch} from "react-icons/all";
 
 const Search = props => (
     <div className={classes.searchField}>
@@ -8,7 +8,7 @@ const Search = props => (
             <FaSearch />
         </div>
         <div>
-            <input/>
+            <input placeholder={'search'}/>
         </div>
     </div>
 )

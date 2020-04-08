@@ -3,9 +3,10 @@
     box-shadow: 1px 1px 1px 1px black;
     border-radius: 5px;
     margin-bottom: 5px;
-    padding: 5px;
+    padding: 10px;
     justify-items: center;
-    background: lightgrey;
+    background: #18191a;
+    color: whitesmoke;
 }
 
 .post img {

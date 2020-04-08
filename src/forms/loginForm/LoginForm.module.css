@@ -1,0 +1,26 @@
+.field {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.rememberMe {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.rememberMe>div {
+    color: orange;
+    text-shadow: 2px 2px 1px firebrick;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+}
+.errorMessage {
+    position: absolute;
+    color: firebrick;
+    margin-top: -5px;
+    right: 0;
+    text-shadow: 2px 2px 2px black;
+
+}

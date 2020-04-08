@@ -1,16 +1,27 @@
+.myStuffWrapper {
+    padding: 10px;
+}
+
 .myStuff {
     border-radius: 5px;
-    background: lightgrey;
-    margin: 10px;
+    background: var(--darkOne);
     padding: 10px;
     box-sizing: content-box;
     box-shadow: 1px 1px 1px 1px black;
 }
 
 .myStuff>div {
-    background: whitesmoke;
+    color: whitesmoke;
+    background: var(--darkTwo);
     padding: 10px;
     margin-bottom: 10px;
-    box-shadow: 1px 1px 1px 1px grey;
+    box-shadow: 1px 1px 1px 1px black;
     cursor: pointer;
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    align-items: center;
+}
+
+.myStuff>div:hover {
+    background: var(--darkThree);
 }

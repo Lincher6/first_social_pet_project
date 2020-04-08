@@ -1,48 +1,56 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import classes from './Messages.module.css'
 import Message from "./Message/Message";
-import Button from "../../common/Button/Button";
-import {Field, reduxForm} from "redux-form";
-import {FormComponent} from "../../common/TextArea/TextArea";
-import {maxLength, required} from "../../../validators/validators";
+import audio from '../../../assets/BlobSound.ogg'
+import {MessageForm} from "../../../forms/messageForm/MessageForm";
+import {withFormik} from "formik";
+import * as yup from "yup";
 
 const Messages = props => {
-    const maxLength100 = maxLength(100)
-    const TextField = FormComponent('textarea');
-
-    const NewMessageForm = (props) => (
-        <form onSubmit={props.handleSubmit}>
-            <Field
-                component={TextField}
-                name={'newMessage'}
-                placeholder={'New Message'}
-                validate={[required, maxLength100]}
-            />
-            <Button>Отправить сообщение</Button>
-        </form>
-    )
-
-    const NewMessageReduxForm = reduxForm({
-        form: 'newMessage'
-    })(NewMessageForm)
+    const blobSound = new Audio(audio)
+    const MessageReduxForm = withFormik({
+        validationSchema: yup.object().shape({
+            newMessage: yup.string().required('обязательное поле')
+        }),
+        handleSubmit(values) {
+            blobSound.play()
+            props.addMessage(values.newMessage)
+        }
+    })(MessageForm)
 
     const addMessage = (values) => {
+        blobSound.play()
         props.addMessage(values.newMessage)
     }
 
+    const ref = useRef(null)
 
-    return <div className={classes.messages}>
-            {props.messages.map((item, index) => {
-                return (
-                    <Message
-                        key={index}
-                        text={item.message}
-                    />
-                )
-            })}
+    const autoScroll = () => {
+        ref.current.scrollIntoView({ behavior: "smooth", block: 'nearest' })
+    }
 
-            <NewMessageReduxForm onSubmit={addMessage}/>
+    useEffect(autoScroll, [props.messages])
+
+    return (
+        <div>
+            <div className={classes.messages}>
+                {props.messages.map((item, index) => {
+                    return (
+                        <div key={index}>
+                            <Message
+                                text={item.message}
+                                isMine={item.isMine}
+                            />
+                            <div ref={ref}></div>
+                        </div>
+                    )
+                })}
+
+            </div>
+            <MessageReduxForm />
         </div>
+
+    )
 }
 
 export default Messages

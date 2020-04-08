@@ -1,5 +1,6 @@
 .searchField {
-    display: flex;
+    display: grid;
+    grid-template-columns: 25px 1fr;
     background: rgba(50, 50, 50, 1);
     border-radius: 15px;
     padding: 5px;
@@ -18,7 +19,7 @@
 }
 
 .searchIcon:hover {
-    color: red;
+    color: firebrick;
     cursor: pointer;
 }
 
@@ -28,4 +29,6 @@
     outline: none;
     border: none;
     color: white;
+    display: block;
+    width: 100%;
 }

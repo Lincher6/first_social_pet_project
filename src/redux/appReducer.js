@@ -23,8 +23,7 @@ export const setIsInitialized = (payload) => (
     {type: SET_IS_INITIALIZED, payload}
 )
 
-export const appInitialize = () => dispatch => {
-    dispatch(getAuthData()).then(() => {
-        dispatch(setIsInitialized(true))
-    })
+export const appInitialize = () => async dispatch => {
+    await dispatch(getAuthData())
+    dispatch(setIsInitialized(true))
 }

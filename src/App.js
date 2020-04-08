@@ -12,6 +12,7 @@ import SplashScreen from "./components/common/SpalshScreen/SplashScreen";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {appInitialize} from "./redux/appReducer";
+import Home from "./components/Home/Home";
 
 class App extends Component {
     componentDidMount() {
@@ -32,7 +33,9 @@ class App extends Component {
                         <HeaderContainer/>
                         <div>
                             <div className={classes.content}>
-                                <Route path={'/profile/:userId?'} component={ProfileContainer}/>
+                                <Route path={'/'} exact component={Home}/>
+                                <Route path={'/profile/:userId?'} render={(props) => (
+                                    <ProfileContainer key={props.match.params.userId} {...props}/>)}/>
                                 <Route path={'/dialogs'} component={DialogsPageContainer}/>
                                 <Route path={'/users'} component={UsersContainer}/>
                                 <Route path={'/login'} component={LoginContainer}/>

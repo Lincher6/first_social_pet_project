@@ -40,6 +40,12 @@ export const profileAPI = {
     updateStatus: (status) => {
         return axiosInstance.put(`/profile/status/`, {status})
             .then(response => response.data)
+    },
+
+    updateProfileInfo: (profileData) => {
+        console.log(profileData)
+        return axiosInstance.put(`/profile`, {...profileData})
+            .then(response => response.data)
     }
 }
 
@@ -60,5 +66,5 @@ export const authAPI = {
     logout: () => {
         return axiosInstance.delete(`/auth/login`)
             .then(response => response.data)
-    }
+    },
 }

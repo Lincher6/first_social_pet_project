@@ -1,0 +1,13 @@
+.messageForm {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.errorMessage {
+    position: absolute;
+    color: firebrick;
+    margin-top: -5px;
+    right: 0;
+    text-shadow: 2px 2px 2px black;
+
+}

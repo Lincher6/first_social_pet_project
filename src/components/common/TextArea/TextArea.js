@@ -2,11 +2,17 @@ import React from 'react'
 import classes from './TextArea.module.css'
 
 export const FormComponent = Component => ({input, meta, ...props}) => {
-    const error = meta.error && meta.submitFailed && !meta.active
+    const {error, submitFailed} = meta || {error: false, submitFailed: false}
+    const isError = error && submitFailed
     const cls = [classes.base]
-    if (error) {
+    if (isError) {
         cls.push(classes.error)
     }
+
+    if (props.type === 'empty') {
+        cls.push(classes.empty)
+    }
+
     return <div className={classes.formComponent}>
         <Component
             {...props}
@@ -14,7 +20,7 @@ export const FormComponent = Component => ({input, meta, ...props}) => {
             className={cls.join(' ')}
         />
         <div className={classes.errorMessage}>
-            {error ? meta.error : ''}
+            {isError ? error : ''}
         </div>
     </div>
 }

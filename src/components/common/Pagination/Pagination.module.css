@@ -1,0 +1,14 @@
+.pageNumbers {
+    color: whitesmoke;
+    overflow: hidden;
+    text-align: center;
+}
+
+.currentPage {
+    font-weight: bold;
+    color: firebrick;
+}
+
+.pageNumber {
+    cursor: pointer;
+}

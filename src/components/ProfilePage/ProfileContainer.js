@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
 import {
-    addPost, getProfile, getProfileStatus, setProfileStatus
+    addPost, getProfile, getProfileStatus, setProfileStatus, updateProfileInfo
 } from "../../redux/profileReducer";
 import Loader from "../common/Loader/Loader";
 import {withRouter} from "react-router-dom";
@@ -11,12 +11,11 @@ import {compose} from "redux";
 
 class ProfileContainer extends Component {
     componentDidMount() {
-
         let userId = this.props.match.params.userId
-        userId = userId ? userId : this.props.currentProfileId
+        userId = userId ? userId : this.props.authUserId
 
-        this.props.getProfile(userId)
         this.props.getProfileStatus(userId)
+        this.props.getProfile(userId)
     }
 
     render() {
@@ -30,18 +29,18 @@ class ProfileContainer extends Component {
 
 const mapStateToProps = state => ({
     profile: state.profileReducer.profile,
-    currentProfileId: state.profileReducer.currentProfileId,
+    authUserId: state.authReducer.userId,
     isLoading: state.profileReducer.isLoading,
     posts: state.profileReducer.posts,
-    profileStatus: state.profileReducer.profileStatus
-
+    profileStatus: state.profileReducer.profileStatus,
 })
 
 const mapDispatchToProps = {
     addPost,
     getProfile,
     getProfileStatus,
-    setProfileStatus
+    setProfileStatus,
+    updateProfileInfo
 }
 
 export default compose(

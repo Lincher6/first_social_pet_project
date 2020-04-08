@@ -1,5 +1,5 @@
 .status {
-
+    position: relative;
 }
 
 .editModeOn input {
@@ -10,6 +10,12 @@
     outline: none;
 }
 
-.editModeOff {
-    cursor: default;
+.status:hover {
+    color: orange;
+    cursor: pointer;
 }
+
+.editModeOff {
+
+}
+

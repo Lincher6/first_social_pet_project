@@ -1,6 +1,5 @@
-import {SET_AUTH_DATA, SET_USER_DATA} from "./actionTypes";
+import {SET_AUTH_DATA, SET_AUTH_ERROR, SET_USER_DATA} from "./actionTypes";
 import {authAPI, profileAPI} from "../api/api";
-import {stopSubmit} from "redux-form";
 
 const initialState = {
     userId: null,
@@ -9,6 +8,7 @@ const initialState = {
     likes: 123,
     userData: {},
     isAuthorized: false,
+    authError: false
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -26,6 +26,12 @@ export const authReducer = (state = initialState, action) => {
                 isAuthorized: action.isAuthorized
             }
 
+        case SET_AUTH_ERROR:
+            return {
+                ...state,
+                authError: action.error
+            }
+
         default:
             return state
     }
@@ -39,46 +45,39 @@ export const setUserData = (data, isAuthorized) => (
     {type: SET_USER_DATA, data, isAuthorized}
 )
 
-export const getAuthData = () => (dispatch) => {
-    return authAPI.authMe()
-        .then(data => {
-            if (data.resultCode === 0) {
-                let {id, login, email} = data.data
-                dispatch(setAuthData(id, login, email))
-                return dispatch(setUserDataThunk(id))
-            }
-        })
-}
+export const setAuthError = (error) => (
+    {type: SET_AUTH_ERROR, error}
+)
 
-export const setUserDataThunk = (userId) => (dispatch) => {
-    return profileAPI.getProfile(userId)
-        .then(data => {
-            dispatch(setUserData(data, true))
-        })
-}
-
-export const login = (dataInput) => {
-    return (dispatch) => {
-        authAPI.login(dataInput)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(getAuthData())
-                } else {
-                    const message = data.messages.length > 0 ? data.messages[0] : 'Неверный логин или пароль'
-                    dispatch(stopSubmit('login', {_error: message}))
-                }
-            })
+export const getAuthData = () => async dispatch => {
+    const data = await authAPI.authMe()
+    if (data.resultCode === 0) {
+        let {id, login, email} = data.data
+        dispatch(setAuthData(id, login, email))
+        return dispatch(setUserDataThunk(id))
     }
 }
 
-export const logout = () => {
-    return (dispatch) => {
-        authAPI.logout()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setAuthData(null, null, null))
-                    dispatch(setUserData({}, false))
-                }
-            })
+export const setUserDataThunk = (userId) => async dispatch => {
+    const data = await profileAPI.getProfile(userId)
+    dispatch(setUserData(data, true))
+    return data
+}
+
+export const login = (dataInput) => async dispatch => {
+    const data = await authAPI.login(dataInput)
+    if (data.resultCode === 0) {
+        dispatch(getAuthData())
+    } else {
+        const message = data.messages.length > 0 ? data.messages[0] : 'Неверный логин или пароль'
+        dispatch(setAuthError(true))
+    }
+}
+
+export const logout = () => async dispatch => {
+    const data = await authAPI.logout()
+    if (data.resultCode === 0) {
+        dispatch(setAuthData(null, null, null))
+        dispatch(setUserData({}, false))
     }
 }

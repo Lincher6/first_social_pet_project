@@ -1,12 +1,20 @@
 .dialog {
-    color: white;
+    color: whitesmoke;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
 }
 
-.dialog .active {
-    color: gold;
+.dialog.active {
+    background: var(--darkTwo);
+    color: orange;
+    text-shadow: 1px 1px 1px red;
 }
 
-.dialog a {
-    text-decoration: none;
-    color: white;
+.dialog>div>img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
 }

@@ -1,5 +1,7 @@
 .users {
-    padding: 5px;
-    border-right: 3px solid grey;
-
+    padding: 10px;
+    background: var(--darkOne);
+    border-radius: 10px;
+    min-height: 300px;
+    box-shadow: 1px 1px 1px 1px black;
 }

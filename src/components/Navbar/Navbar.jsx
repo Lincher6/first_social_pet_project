@@ -9,7 +9,9 @@ import usersIcon from '../../assets/usersIcon.png'
 const Navbar = () => {
     return <nav className={classes.nav}>
         <div className={classes.logo}>
-            <img src={logo} alt=''/>
+            <NavLink to={'/'}>
+                <img src={logo} alt=''/>
+            </NavLink>
         </div>
         <div className={classes.page}>
             <NavLink to="/profile" activeClassName={classes.active}>

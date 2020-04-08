@@ -1,42 +1,24 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {Field, reduxForm} from "redux-form";
-import Button from "../../common/Button/Button";
-import {FormComponent} from "../../common/TextArea/TextArea";
-import {maxLength, required} from "../../../validators/validators";
+import {MessageForm} from "../../../forms/messageForm/MessageForm";
+import {withFormik} from "formik";
+import * as yup from 'yup'
 
 const MyPosts = props => {
-    const maxLength50 = maxLength(50)
-    const TextField = FormComponent('textarea')
-
-    const addPost = (values) => {
-        console.log(values)
-        props.addPost(values.newPostText)
-    }
-
-    const AddPostForm = (props) => (
-        <form className={classes.newPost} onSubmit={props.handleSubmit}>
-            <div>
-                <Field
-                    component={TextField}
-                    name={'newPostText'}
-                    placeholder={'New Post Text'}
-                    validate={[required, maxLength50]}
-                />
-            </div>
-            <div style={{marginTop: '-15px'}}>
-                <Button>Добавить Пост</Button>
-            </div>
-        </form>
-    )
-
-    const AddPostReduxForm = reduxForm({form: 'addPost'})(AddPostForm)
+    const MessageFormik = withFormik({
+        validationSchema: yup.object().shape({
+            newMessage: yup.string().required('обязательное поле')
+        }),
+        handleSubmit(values) {
+            props.addPost(values.newMessage)
+        }
+    })(MessageForm)
 
     return(
         <div>
             <div className={classes.MyPosts}>
-                <AddPostReduxForm onSubmit={addPost}/>
+                <MessageFormik/>
                 <div className={classes.posts}>
                     {props.posts.map((item, index) => {
                         return (

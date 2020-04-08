@@ -1,4 +1,5 @@
 .dialogsWrapper {
     display: grid;
-    grid-template-columns: 2fr 7fr;
+    grid-gap: 15px;
+    grid-template-columns: 2fr 6fr;
 }

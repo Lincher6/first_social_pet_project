@@ -1,3 +1,26 @@
 .message {
     color: white;
+    text-shadow: 1px 1px 1px black;
+    margin-bottom: 15px;
+    width: 50%;
+    background: firebrick;
+    padding: 10px;
+    border-radius: 15px;
+    word-wrap: break-word;
+    white-space: pre;
+    box-shadow: 5px 5px 3px 0px rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    animation: blob .2s linear;
+}
+
+.message.person {
+    background: var(--darkOne);
+    margin-left: auto;
+}
+
+@keyframes blob {
+    0% {transform: scale(.3, .3)}
+    50% {transform: scale(1.05, 1.05)}
+    100% {transform: scale(1, 1)}
+
 }

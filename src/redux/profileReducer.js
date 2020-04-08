@@ -10,9 +10,9 @@ import {profileAPI} from "../api/api";
 
 let initialState = {
     profile: null,
-    currentProfileId: 2,
+    currentProfileId: null,
     isLoading: false,
-    profileStatus: 'no status',
+    profileStatus: null,
     posts: [
         {id: 1, postText: 'Hi, how are you?', likes: 5},
         {id: 2, postText: 'It\'s my first post', likes: 13},
@@ -55,7 +55,7 @@ export const profileReducer = (state = initialState, action) => {
         case SET_PROFILE_STATUS:
             return {
                 ...state,
-                profileStatus: action.profileStatus || 'no status'
+                profileStatus: action.profileStatus
             }
 
 
@@ -84,35 +84,28 @@ export const toggleIsLoading = (isLoading) => ({
     type: TOGGLE_IS_LOADING, isLoading
 })
 
-export const getProfile = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleIsLoading(true))
+export const getProfile = (userId) => async dispatch => {
+    dispatch(toggleIsLoading(true))
+    const data = await profileAPI.getProfile(userId)
+    const status = await profileAPI.getStatus(userId)
+    dispatch(setProfileStatusAction(status))
+    dispatch(setProfile(data))
+    dispatch(setCurrentProfileId(userId))
+    dispatch(toggleIsLoading(false))
+}
 
-        profileAPI.getProfile(userId)
-            .then(data => {
-                dispatch(setProfile(data))
-                dispatch(setCurrentProfileId(userId))
-                dispatch(toggleIsLoading(false))
-            })
+export const getProfileStatus = (userId) => async dispatch => {
+    const data = await profileAPI.getStatus(userId)
+    dispatch(setProfileStatusAction(data))
+}
+
+export const setProfileStatus = (status) => async dispatch => {
+    const data = profileAPI.updateStatus(status)
+    if (data.resultCode === 0) {
+        dispatch(setProfileStatusAction(status))
     }
 }
 
-export const getProfileStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getStatus(userId)
-            .then(data => {
-                dispatch(setProfileStatusAction(data))
-            })
-    }
-}
-
-export const setProfileStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateStatus(status)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setProfileStatusAction(status))
-                }
-            })
-    }
+export const updateProfileInfo = (profileId, profileData) => async dispatch => {
+    const data = await profileAPI.updateProfileInfo(profileData)
 }

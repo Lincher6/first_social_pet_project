@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 const ProfileMenu = (props) => (
     <div className={classes.profileMenu}>
         <div>
-            <NavLink to={'/profile'}>Профиль</NavLink>
+            <NavLink to={'/profile'} exact>Профиль</NavLink>
         </div>
         <div>
             Настройки
