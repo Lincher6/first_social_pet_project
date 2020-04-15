@@ -2,6 +2,13 @@
     padding: 10px;
     background: var(--darkOne);
     border-radius: 10px;
-    min-height: 300px;
+    height: 77vh;
     box-shadow: 1px 1px 1px 1px black;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.findUsers {
+    margin-top: 10px;
+    text-align: center;
 }

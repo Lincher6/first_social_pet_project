@@ -5,8 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {store} from "./redux/store";
 import {Provider} from "react-redux";
-const x = [{a: 1, b: 2}, {c: 3, d: 4}]
-x.map((i) => console.log(i))
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,13 +1,17 @@
 import React from 'react'
-import classes from './Login.module.css'
+import {connect} from "react-redux";
+import {Redirect, withRouter} from "react-router-dom";
+import {compose} from "redux";
+import {login} from "../../../redux/authReducer";
+import classes from "./Login.module.css";
 import {withFormik} from "formik";
-import {LoginForm} from "../../../forms/loginForm/LoginForm";
 import * as yup from "yup";
+import {LoginForm} from "../../../forms/loginForm/LoginForm";
 
-const Login = (props) => {
+const Login = props => {
 
     const LoginFormik = withFormik({
-        mapPropsToValues({login, password}) {
+        mapPropsToValues() {
             return {login: '', password: ''}
         },
         validationSchema: yup.object().shape({
@@ -20,7 +24,9 @@ const Login = (props) => {
     })(LoginForm)
 
     return (
-        <div className={classes.login}>
+        props.isAuthorized
+        ? <Redirect to={'/profile'}/>
+        : <div className={classes.login}>
             <div className={classes.title}>Вход</div>
             <LoginFormik />
             {props.authError ? <div className={classes.error}>Неверный логин или пароль</div>: null}
@@ -28,4 +34,16 @@ const Login = (props) => {
     )
 }
 
-export default Login
+const mapStateToProps = state => ({
+    isAuthorized: state.authReducer.isAuthorized,
+    authError: state.authReducer.authError
+})
+
+const mapDispatchToProps = {
+    login
+}
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter
+)(Login)

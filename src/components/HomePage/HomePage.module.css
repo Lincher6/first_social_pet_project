@@ -1,0 +1,75 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.title {
+    font-size: 100px;
+    font-family: "Book Antiqua";
+    font-weight: bold;
+    color: white;
+    text-shadow: 6px 6px 0px red;
+}
+
+.logo>img {
+    width: 200px;
+    height: 200px;
+    animation: heartBeat 1.5s linear infinite;
+    margin-top: 10px;
+}
+
+.pages {
+    display: flex;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.page {
+    margin: 0 10px;
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px 1px black;
+    background: var(--darkOne);
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px;
+    transition: background-color .5s;
+}
+
+.page:hover {
+    background-color: var(--darkTwo);
+    transition: background-color .5s;
+}
+
+.page>img {
+    width: 80px;
+    height: 80px;
+}
+
+.pageText {
+    transform: translate(0, 5px);
+    text-shadow: 1px 1px 1px red;
+}
+
+.page:hover .pageText{
+    animation: jumpy .5s ease-in-out infinite;
+}
+
+@keyframes jumpy {
+    0% {transform: translate(0, 5px)}
+    50% {transform: translate(0, 0); color: orange;}
+    100% {transform: translate(0, 5px)}
+}
+
+@keyframes heartBeat {
+    0% {transform: scale(1, 1)}
+    10% {transform: scale(1.1, 1.1)}
+    20% {transform: scale(1, 1)}
+    30% {transform: scale(1.1, 1.1)}
+    40% {transform: scale(1, 1)}
+    100% {transform: scale(1, 1)}
+}

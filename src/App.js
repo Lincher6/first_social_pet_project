@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import classes from './App.module.css';
 import Navbar from './components/Navbar/Navbar';
-import {BrowserRouter, Route} from "react-router-dom";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/ProfilePage/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import LoginContainer from "./components/Auth/Login/LoginContainer";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import UsersPage from "./components/UsersPage/UsersPage";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
+import Header from "./components/Header/Header";
+import Login from "./components/Auth/Login/Login";
 import Footer from "./components/Footer/Footer";
-import DialogsPageContainer from "./components/DialogsPage/DialogsPageContainer";
+import DialogsPage from "./components/DialogsPage/DialogsPage";
 import SplashScreen from "./components/common/SpalshScreen/SplashScreen";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {appInitialize} from "./redux/appReducer";
-import Home from "./components/Home/Home";
+import HomePage from "./components/HomePage/HomePage";
+import MyProfilePage from "./components/ProfilePage/MyProfilePage";
 
 class App extends Component {
     componentDidMount() {
@@ -30,15 +31,17 @@ class App extends Component {
                 <div className={classes.appWrapper}>
                     <Navbar/>
                     <div className={classes.mainWrapper}>
-                        <HeaderContainer/>
+                        <Header/>
                         <div>
                             <div className={classes.content}>
-                                <Route path={'/'} exact component={Home}/>
-                                <Route path={'/profile/:userId?'} render={(props) => (
-                                    <ProfileContainer key={props.match.params.userId} {...props}/>)}/>
-                                <Route path={'/dialogs'} component={DialogsPageContainer}/>
-                                <Route path={'/users'} component={UsersContainer}/>
-                                <Route path={'/login'} component={LoginContainer}/>
+                                <Switch>
+                                    <Route path={'/'} exact component={HomePage}/>
+                                    <Route path={'/profile'} exact component={MyProfilePage}/>
+                                    <Route path={'/profile/:userId?'} component={ProfilePage}/>
+                                    <Route path={'/dialogs/:userId?'} component={DialogsPage}/>
+                                    <Route path={'/users'} component={UsersPage}/>
+                                    <Route path={'/login'} component={Login}/>
+                                </Switch>
                             </div>
                         </div>
 

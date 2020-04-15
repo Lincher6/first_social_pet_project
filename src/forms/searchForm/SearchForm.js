@@ -10,8 +10,8 @@ const fields = [
     {filed: 'year', name: "Год рождения"}
 ]
 
-export const SearchForm = ({errors, touched, handleChange, values}) => (
-    <Form className={classes.searchForm}>
+export const SearchForm = ({handleChange}) => (
+    <Form>
         {fields.map((item, index) => (
             <div key={index} className={classes.item}>
                 <div>

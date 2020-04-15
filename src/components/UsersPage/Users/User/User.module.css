@@ -1,0 +1,65 @@
+.user {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    color: whitesmoke;
+    margin: 10px;
+    padding: 10px;
+    background: var(--darkOne);
+    box-shadow: 1px 1px 1px 1px black;
+    height: 120px;
+    overflow: hidden;
+}
+
+.picture {
+    margin: 0 auto 10px auto;
+}
+
+.picture>img {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+}
+
+.followButton {
+    text-align: center;
+}
+
+.userInfo {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-gap: 10px;
+    position: relative;
+}
+
+.userInfo>div {
+    overflow: hidden;
+}
+
+.name {
+    font-size: 25px;
+    align-self: start;
+    font-weight: bold;
+    color: orange;
+    text-shadow: 2px 2px 2px red;
+    overflow: hidden;
+}
+
+.status {
+    margin-top: 10px;
+    overflow: hidden;
+    align-self: end;
+    color: firebrick;
+    font-size: 18px;
+    font-family: erial;
+}
+
+.location {
+    overflow-wrap: break-word;
+    font-size: 14px;
+}
+
+.sendMessage {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}

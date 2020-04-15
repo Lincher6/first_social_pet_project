@@ -1,12 +1,13 @@
 import React from 'react';
 import classes from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
-import logo from "../../assets/umbrella-logo.png";
-import profileIcon from '../../assets/profileIcon.png'
-import dialogIcon from '../../assets/dialogIcon.png'
-import usersIcon from '../../assets/usersIcon.png'
+import logo from "../../assets/images/icons/umbrella-logo.png";
+import profileIcon from '../../assets/images/icons/profileIcon.png'
+import dialogIcon from '../../assets/images/icons/dialogIcon.png'
+import usersIcon from '../../assets/images/icons/usersIcon.png'
+import {connect} from "react-redux";
 
-const Navbar = () => {
+const Navbar = props => {
     return <nav className={classes.nav}>
         <div className={classes.logo}>
             <NavLink to={'/'}>
@@ -14,18 +15,24 @@ const Navbar = () => {
             </NavLink>
         </div>
         <div className={classes.page}>
-            <NavLink to="/profile" activeClassName={classes.active}>
+            <NavLink to={props.isAuth ? '/profile' : '/login'} exact activeClassName={classes.active}>
                 <div className={classes.item}>
                     <img src={profileIcon} alt=''/>
-                    <div>Profile</div>
+                    <div>{props.isAuth ? 'Profile' : 'Login'}</div>
                 </div>
             </NavLink>
         </div>
         <div className={classes.page}>
-            <NavLink to="/dialogs" activeClassName={classes.active}>
+            <NavLink to={`/dialogs/${props.currentDialogId || ''}`} activeClassName={classes.active}>
                 <div className={classes.item}>
                     <img src={dialogIcon} alt=''/>
                     <div>Dialogs</div>
+                    {props.newMessageCount
+                        ? <div className={classes.newMessageCount}>
+                            <div>{props.newMessageCount < 99 ? props.newMessageCount : 99}</div>
+                        </div>
+                        : null
+                    }
                 </div>
             </NavLink>
         </div>
@@ -40,4 +47,10 @@ const Navbar = () => {
     </nav>
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+    currentDialogId: state.dialogsReducer.currentDialogId,
+    isAuth: state.authReducer.isAuthorized,
+    newMessageCount: state.appReducer.newMessageCount
+})
+
+export default connect(mapStateToProps, null)(Navbar);

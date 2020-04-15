@@ -5,14 +5,51 @@
 }
 
 .footer {
+    display: flex;
+    justify-content: left;
     padding: 10px;
     color: white;
     max-width: 1200px;
     margin: 0 auto;
-    height: 100px;
+    height: 200px;
 }
 
 .top {
     height: 5px;
     background: linear-gradient(orange, black);
+}
+
+.footer>div {
+    flex-grow: 1;
+}
+
+.item {
+    display: inline;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.icon img {
+    display: inline-block;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.ref {
+    font-size: 16px;
+}
+
+.ref:hover {
+    color: orange;
+    text-shadow: 1px 1px 1px firebrick;
+}
+
+.website {
+    font-size: 20px;
+    margin-right: 10px;
+    text-shadow: 3px 3px 1px firebrick;
 }

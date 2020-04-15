@@ -1,21 +1,59 @@
 .message {
+    flex-grow: 1;
     color: white;
     text-shadow: 1px 1px 1px black;
     margin-bottom: 15px;
-    width: 50%;
     background: firebrick;
     padding: 10px;
     border-radius: 15px;
     word-wrap: break-word;
-    white-space: pre;
+    white-space: pre-wrap;
     box-shadow: 5px 5px 3px 0px rgba(0, 0, 0, .5);
     box-sizing: border-box;
     animation: blob .2s linear;
+    overflow-wrap: break-word;
+    position: relative;
 }
 
-.message.person {
-    background: var(--darkOne);
+.delete {
+    opacity: 0;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.message:hover .delete {
+    opacity: .5;
+    cursor: pointer;
+}
+
+.messageWrapper {
+    display: flex;
+    width: 50%;
+}
+
+.personMessage {
     margin-left: auto;
+    flex-direction: row-reverse;
+}
+
+.personMessage>.message {
+    background: var(--darkOne);
+}
+
+.photo>img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 0 5px;
+}
+
+.date {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    opacity: .5;
+    font-size: 12px;
 }
 
 @keyframes blob {

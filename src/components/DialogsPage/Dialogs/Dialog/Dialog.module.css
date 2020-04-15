@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
     align-items: center;
+    position: relative;
 }
 
 .dialog.active {
@@ -17,4 +18,22 @@
     height: 40px;
     border-radius: 20px;
     margin-right: 10px;
+}
+
+.newMessages {
+    position: absolute;
+    right: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    background-color: var(--darkThree);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+}
+
+.newMessages>div {
+    font-size: 14px;
+    text-align: center;
 }

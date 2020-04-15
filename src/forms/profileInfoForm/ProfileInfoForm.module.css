@@ -15,6 +15,10 @@
     text-shadow: 2px 2px 2px black;
 }
 
+.charValue {
+    text-shadow: 2px 2px 0 black;
+}
+
 .button {
     position: absolute;
     right: 0;

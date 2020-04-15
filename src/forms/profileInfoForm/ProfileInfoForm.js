@@ -6,7 +6,8 @@ import {Form} from "formik";
 const fields = [
     {field: 'status', name: 'Сатус'},
     {field: 'aboutMe', name: 'Обо мне'},
-    {field: 'lookingForAJob', name: 'Ищу работу'}
+    {field: 'lookingForAJob', name: 'Ищу работу'},
+    {field: 'lookingForAJobDescription', name: ' О работе'}
 ]
 
 export const ProfileInfoForm = ({handleChange, values}) => {
@@ -29,6 +30,7 @@ export const ProfileInfoForm = ({handleChange, values}) => {
                         {item.name}
                     </div>
                     <Input
+                        className={classes.charValue}
                         onChange={handleChange}
                         name={item.field}
                         empty={!isEdit}

@@ -1,13 +1,15 @@
-import {SET_AUTH_DATA, SET_AUTH_ERROR, SET_USER_DATA} from "./actionTypes";
+import {SET_AUTH_DATA, SET_AUTH_ERROR, SET_USER_DATA, TOGGLE_IS_LOADING} from "./actionTypes";
 import {authAPI, profileAPI} from "../api/api";
+import {setProfile} from "./profileReducer";
 
 const initialState = {
     userId: null,
     login: null,
     email: null,
     likes: 123,
-    userData: {},
+    userData: null,
     isAuthorized: false,
+    isLoading: false,
     authError: false
 }
 
@@ -22,7 +24,7 @@ export const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                userData: {...action.data},
+                userData: action.data,
                 isAuthorized: action.isAuthorized
             }
 
@@ -30,6 +32,12 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 authError: action.error
+            }
+
+        case TOGGLE_IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.payload
             }
 
         default:
@@ -49,6 +57,10 @@ export const setAuthError = (error) => (
     {type: SET_AUTH_ERROR, error}
 )
 
+export const toggleIsLoading = (payload) => (
+    {type: TOGGLE_IS_LOADING, payload}
+)
+
 export const getAuthData = () => async dispatch => {
     const data = await authAPI.authMe()
     if (data.resultCode === 0) {
@@ -61,6 +73,7 @@ export const getAuthData = () => async dispatch => {
 export const setUserDataThunk = (userId) => async dispatch => {
     const data = await profileAPI.getProfile(userId)
     dispatch(setUserData(data, true))
+    dispatch(setProfile(data))
     return data
 }
 

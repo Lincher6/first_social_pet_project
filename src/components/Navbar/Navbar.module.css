@@ -25,7 +25,23 @@ img {
 }
 
 .item {
+    position: relative;
+}
 
+.newMessageCount {
+    position: absolute;
+    text-shadow: 1px 1px 1px black;
+    font-size: 12px;
+    right: 10px;
+    top: 5px;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    background-color: dodgerblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
 }
 
 .page a {

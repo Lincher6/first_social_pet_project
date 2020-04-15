@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './ProfileSmall.module.css'
-import gear from '../../../assets/gearIcon.png'
+import gear from '../../../assets/images/icons/gearIcon.png'
 import {NavLink} from "react-router-dom";
-import noPhoto from '../../../assets/empty-avatar.png'
+import noPhoto from '../../../assets/images/empty-avatar.png'
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 
 const ProfileSmall = (props) => (

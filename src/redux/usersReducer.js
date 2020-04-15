@@ -1,13 +1,13 @@
 import {
     FOLLOW,
-    SET_CURRENT_PAGE,
+    SET_CURRENT_PAGE, SET_SEARCH_VALUE,
     SET_TOTAL_USER_COUNT,
     SET_USERS,
     TOGGLE_FOLLOWING_IN_PROGRESS,
     TOGGLE_IS_LOADING,
     UNFOLLOW
 } from "./actionTypes";
-import {usersAPI} from "../api/api";
+import {dialogsAPI, usersAPI} from "../api/api";
 import actions from "redux-form/lib/actions";
 
 const initialState = {
@@ -16,7 +16,8 @@ const initialState = {
     totalUserCount: 0,
     currentPage: 1,
     isLoading: false,
-    followingInProgress: []
+    followingInProgress: [],
+    searchValue: ''
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -75,6 +76,12 @@ export const usersReducer = (state = initialState, action) => {
                     : [state.followingInProgress.filter(id => id !== action.userId)]
             }
 
+        case SET_SEARCH_VALUE:
+            return {
+                ...state,
+                searchValue: action.payload
+            }
+
         default:
             return state
     }
@@ -99,6 +106,9 @@ export const setCurrentPage = (page) => ({
 export const setTotalUserCount = (totalUserCount) => ({
     type: SET_TOTAL_USER_COUNT, totalUserCount
 })
+export const setSearchValue = (payload) => ({
+    type: SET_SEARCH_VALUE, payload
+})
 
 export const toggleIsLoading = (isLoading) => ({
     type: TOGGLE_IS_LOADING, isLoading
@@ -108,10 +118,11 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({
     type: TOGGLE_FOLLOWING_IN_PROGRESS, isFetching, userId
 })
 
-export const getUsers = (currentPage, pageSize) => async dispatch => {
+export const getUsers = (searchValue, currentPage = 1, pageSize = 100) => async dispatch => {
+    dispatch(setSearchValue(searchValue))
     dispatch(setCurrentPage(currentPage))
     dispatch(toggleIsLoading(true))
-    const data = await usersAPI.getUsers(currentPage, pageSize)
+    const data = await usersAPI.getUsers(currentPage, pageSize, searchValue)
     dispatch(toggleIsLoading(false))
     dispatch(setUsers(data.items))
     dispatch(setTotalUserCount(data.totalCount))

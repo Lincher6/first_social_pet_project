@@ -10,8 +10,8 @@ const axiosInstance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers: (currentPage, pageSize) => {
-        return axiosInstance.get(`/users?count=${pageSize}&page=${currentPage}`)
+    getUsers: (currentPage, pageSize, searchValue) => {
+        return axiosInstance.get(`/users?count=${pageSize}&page=${currentPage}&term=${searchValue || ''}`)
             .then(response => response.data)
     },
 
@@ -43,7 +43,6 @@ export const profileAPI = {
     },
 
     updateProfileInfo: (profileData) => {
-        console.log(profileData)
         return axiosInstance.put(`/profile`, {...profileData})
             .then(response => response.data)
     }
@@ -67,4 +66,36 @@ export const authAPI = {
         return axiosInstance.delete(`/auth/login`)
             .then(response => response.data)
     },
+}
+
+export const dialogsAPI = {
+    getDialogs: () => {
+        return axiosInstance.get(`/dialogs`)
+            .then(response => response.data)
+    },
+
+    sendMessage: (userId, message) => {
+        return axiosInstance.post(`/dialogs/${userId}/messages`, {body: message})
+            .then(response => response.data)
+    },
+
+    getMessages: (userId) => {
+        return axiosInstance.get(`/dialogs/${userId}/messages/`)
+            .then(response => response.data)
+    },
+
+    setNewDialog: (userId) => {
+        return axiosInstance.put(`/dialogs/${userId}`)
+            .then(response => response.data)
+    },
+
+    deleteMessage: (messageId) => {
+        return axiosInstance.delete(`dialogs/messages/${messageId}`)
+            .then(response => response.data)
+    },
+
+    refreshMessages: () => {
+        return axiosInstance.get(`dialogs/messages/new/count`)
+            .then(response => response.data)
+    }
 }

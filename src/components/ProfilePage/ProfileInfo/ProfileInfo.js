@@ -1,46 +1,39 @@
 import React from "react";
 import classes from './ProfileInfo.module.css'
-import noPhoto from '../../../assets/empty-avatar.png'
-import {ProfileInfoForm} from "../../../forms/profileInfoForm/ProfileInfoForm";
-import {withFormik} from "formik";
+import {connect} from "react-redux";
+import {
+    getProfile,
+    getProfileStatus,
+    setProfileStatus,
+    updateProfileInfo
+} from "../../../redux/profileReducer";
+import ProfilePhoto from "./ProfilePhoto/ProfilePhoto";
+import {ProfileInfoTable} from "./ProfileInfoTable/ProfileInfoTable";
 
-const ProfileInfoFormik = withFormik({
-    mapPropsToValues({profileStatus, aboutMe, lookingForAJob, isAuth, updateProfileInfo, setProfileStatus, profile, userId}) {
-        return {
-            status: profileStatus || 'None',
-            aboutMe: aboutMe || 'None',
-            lookingForAJob: lookingForAJob ? 'Да' : 'Нет',
-            isAuth,
-            updateProfileInfo,
-            setProfileStatus,
-            profile,
-            userId}
-    },
-
-    handleSubmit(values) {
-        values.setProfileStatus(values.status)
-        values.updateProfileInfo(values.userId, {
-            aboutMe: values.aboutMe,
-            lookingForAJob: values.lookingForAJob === 'Да',
-            lookingForAJobDescription: 'sdfsdf',
-            fullName: 'IceBerg'
-        })
-    }
-})(ProfileInfoForm)
-
-const ProfileInfo = props => {
+const ProfileInfo = ({profile, ...props}) => {
     return (
         <div className={classes.info}>
-            <div className={classes.avatar}>
-                <img src={props.photos.large != null ? props.photos.large : noPhoto} alt=""/>
-            </div>
+            <ProfilePhoto photos={profile.photos}/>
             <div>
-                <div className={classes.name}>{props.fullName}</div>
-                <ProfileInfoFormik {...props} isAuth={props.authUserId === props.userId} />
+                <div className={classes.name}>{profile.fullName}</div>
+                <ProfileInfoTable {...props} {...profile} isAuth={props.authUserId === profile.userId} />
             </div>
 
         </div>
     )
 }
 
-export default ProfileInfo
+const mapStateToProps = state => ({
+    profile: state.profileReducer.profile,
+    authUserId: state.authReducer.userId,
+    profileStatus: state.profileReducer.profileStatus,
+})
+
+const mapDispatchToProps = {
+    getProfile,
+    getProfileStatus,
+    setProfileStatus,
+    updateProfileInfo,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileInfo)

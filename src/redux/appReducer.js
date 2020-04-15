@@ -1,9 +1,11 @@
-import {SET_IS_INITIALIZED} from "./actionTypes";
+import {SET_IS_INITIALIZED, SET_NEW_MESSAGE_COUNT} from "./actionTypes";
 import {getAuthData} from "./authReducer";
+import {dialogsAPI} from "../api/api";
 
 
 const initialState = {
-    isInitialized: false
+    isInitialized: false,
+    newMessageCount: 0
 }
 
 export const appReducer = (state = initialState, action) => {
@@ -12,6 +14,12 @@ export const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isInitialized: action.payload,
+            }
+
+        case SET_NEW_MESSAGE_COUNT:
+            return {
+                ...state,
+                newMessageCount: action.payload,
             }
 
         default:
@@ -23,7 +31,14 @@ export const setIsInitialized = (payload) => (
     {type: SET_IS_INITIALIZED, payload}
 )
 
+export const setNewMessageCount = (payload) => (
+    {type: SET_NEW_MESSAGE_COUNT, payload}
+)
+
 export const appInitialize = () => async dispatch => {
     await dispatch(getAuthData())
     dispatch(setIsInitialized(true))
+
+    const data = await dialogsAPI.refreshMessages()
+    dispatch(setNewMessageCount(data))
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './SplashScreen.module.css'
-import logo from '../../../assets/umbrella-logo.png'
+import logo from '../../../assets/images/icons/umbrella-logo.png'
 
 const SplashScreen = () => (
     <div className={classes.splashScreen}>
