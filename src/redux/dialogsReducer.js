@@ -119,6 +119,7 @@ export const updateDialogs = () => async dispatch => {
 export const getDialogs = () => async dispatch => {
     dispatch(toggleIsLoading(true))
     const data = await dialogsAPI.getDialogs()
+    console.log(data)
     dispatch(setDialogs(data))
     dispatch(toggleIsLoading(false))
 }

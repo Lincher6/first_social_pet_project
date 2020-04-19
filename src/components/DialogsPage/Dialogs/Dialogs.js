@@ -10,7 +10,6 @@ import {connect} from "react-redux";
 import {NavLink, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {Button} from "../../common/Inputs/Inputs";
-import plusIcon from '../../../assets/images/icons/plus.png'
 
 const Dialogs = props => {
     const setCurrentDialog = (userId) => {

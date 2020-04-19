@@ -4,7 +4,18 @@ import noPhoto from "../../../../assets/images/empty-avatar.png"
 import {FaTimes} from "react-icons/all";
 
 const Message = props => {
-    const date = new Date(props.addedAt).toLocaleDateString()
+    const date = new Date(props.addedAt).toLocaleString(
+        'ru',
+        {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            timezone: 'UTC',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        }
+    )
 
     let cls = [classes.messageWrapper]
     if (!props.isMine) {

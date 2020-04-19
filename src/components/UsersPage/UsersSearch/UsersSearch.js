@@ -4,20 +4,21 @@ import {withFormik} from "formik";
 import {SearchForm} from "../../../forms/searchForm/SearchForm";
 
 const UsersFormik = withFormik({
-    mapPropsToValues({searchUsers}) {
-        return {searchUsers}
+    mapPropsToValues({getUsers, setPortionNumber}) {
+        return {getUsers, setPortionNumber}
     },
     handleSubmit(values) {
-        values.searchUsers(values.name)
+        values.setPortionNumber(1)
+        values.getUsers(values.name)
     }
 })(SearchForm)
 
-const UsersSearch = ({searchUsers}) => {
+const UsersSearch = (props) => {
 
     return (
         <div className={classes.searchUsersWrapper}>
             <div className={classes.searchUsers}>
-                <UsersFormik searchUsers={searchUsers}/>
+                <UsersFormik {...props}/>
             </div>
         </div>
     )

@@ -36,9 +36,11 @@ export const setNewMessageCount = (payload) => (
 )
 
 export const appInitialize = () => async dispatch => {
-    await dispatch(getAuthData())
+    const data = await dispatch(getAuthData())
     dispatch(setIsInitialized(true))
 
-    const data = await dialogsAPI.refreshMessages()
-    dispatch(setNewMessageCount(data))
+    if(data.resultCode === 0) {
+        const messagesCount = await dialogsAPI.refreshMessages()
+        dispatch(setNewMessageCount(messagesCount))
+    }
 }

@@ -15,7 +15,7 @@ export const ProfileInfoForm = ({handleChange, values}) => {
 
     return (
         <Form className={classes.form}>
-            {values.isAuth
+            {values.isOwner
                 ? <Button
                     type={!isEdit ? 'submit' : 'button'}
                     className={classes.button}

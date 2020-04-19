@@ -4,11 +4,26 @@
     text-align: center;
 }
 
-.currentPage {
+.pageNumbers .currentPage {
     font-weight: bold;
-    color: firebrick;
+    color: orange;
+    background-color: var(--darkOne);
 }
 
 .pageNumber {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
     cursor: pointer;
+    width: 20px;
+    background-color: var(--darkTwo);
+    margin: 5px 5px;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.disable {
+    pointer-events:none;
+    opacity: .3;
 }

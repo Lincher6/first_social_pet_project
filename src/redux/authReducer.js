@@ -68,12 +68,13 @@ export const getAuthData = () => async dispatch => {
         dispatch(setAuthData(id, login, email))
         return dispatch(setUserDataThunk(id))
     }
+    return data
 }
 
 export const setUserDataThunk = (userId) => async dispatch => {
     const data = await profileAPI.getProfile(userId)
-    dispatch(setUserData(data, true))
     dispatch(setProfile(data))
+    dispatch(setUserData(data, true))
     return data
 }
 
@@ -83,7 +84,7 @@ export const login = (dataInput) => async dispatch => {
         dispatch(getAuthData())
     } else {
         const message = data.messages.length > 0 ? data.messages[0] : 'Неверный логин или пароль'
-        dispatch(setAuthError(true))
+        dispatch(setAuthError(data.messages[0]))
     }
 }
 

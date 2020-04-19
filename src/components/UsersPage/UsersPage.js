@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {getUsers} from "../../redux/usersReducer";
+import {getUsers, setPortionNumber} from "../../redux/usersReducer";
 import {connect} from "react-redux";
 import Users from "./Users/Users";
 import Loader from "../common/Loader/Loader";
@@ -25,7 +25,8 @@ const UsersPage = props => {
             totalUserCount={props.totalUserCount}
             currentPage={props.currentPage}
             onPageChange={onPageChange}
-
+            portionNumber={props.portionNumber}
+            setPortionNumber={props.setPortionNumber}
         />
     )
 
@@ -39,7 +40,7 @@ const UsersPage = props => {
                     {pagination}
                 </div>
             }
-            <UsersSearch searchUsers={props.getUsers}/>
+            <UsersSearch getUsers={props.getUsers} setPortionNumber={props.setPortionNumber}/>
         </div>
     )
 }
@@ -50,10 +51,13 @@ const mapStateToProps = (state) => ({
     totalUserCount: state.usersReducer.totalUserCount,
     currentPage: state.usersReducer.currentPage,
     isLoading: state.usersReducer.isLoading,
+    portionNumber: state.usersReducer.portionNumber,
+    searchValue: state.usersReducer.searchValue
 })
 
 const mapDispatchToProps = {
-    getUsers
+    getUsers,
+    setPortionNumber,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersPage)

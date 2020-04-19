@@ -31,7 +31,7 @@ const MyPosts = ({profile, ...props}) => {
                                 key={item.id}
                                 message={item.postText}
                                 likes={item.likes}
-                                smallPicture={profile.photos.small}
+                                smallPicture={profile ? profile.photos.small : null}
                             />
                         )
                     })}

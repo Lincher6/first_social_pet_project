@@ -4,6 +4,7 @@ import {
     SET_PROFILE,
     SET_PROFILE_STATUS,
     TOGGLE_IS_LOADING,
+    SET_PHOTO
 } from "./actionTypes";
 import {profileAPI} from "../api/api";
 
@@ -58,6 +59,12 @@ export const profileReducer = (state = initialState, action) => {
                 profileStatus: action.profileStatus
             }
 
+        case SET_PHOTO:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.payload}
+            }
+
 
         default:
             return state
@@ -70,6 +77,10 @@ export const addPost = (newPostText) => (
 
 export const setProfile = profile => (
     {type: SET_PROFILE, profile}
+)
+
+export const setPhotoAC = payload => (
+    {type: SET_PHOTO, payload}
 )
 
 export const setProfileStatusAction = profileStatus => (
@@ -107,5 +118,10 @@ export const setProfileStatus = (status) => async dispatch => {
 }
 
 export const updateProfileInfo = (profileId, profileData) => async dispatch => {
-    const data = await profileAPI.updateProfileInfo(profileData)
+    await profileAPI.updateProfileInfo(profileData)
+}
+
+export const setPhoto = (photo) => async dispatch => {
+    const data = await profileAPI.setPhoto(photo)
+    dispatch(setPhotoAC(data.data.photos))
 }

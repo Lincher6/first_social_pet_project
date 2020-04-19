@@ -45,6 +45,16 @@ export const profileAPI = {
     updateProfileInfo: (profileData) => {
         return axiosInstance.put(`/profile`, {...profileData})
             .then(response => response.data)
+    },
+
+    setPhoto: (photo) => {
+        const formData = new FormData()
+        formData.append('image', photo)
+        return axiosInstance.put(`/profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => response.data)
     }
 }
 

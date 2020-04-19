@@ -7,11 +7,45 @@
     margin: 0 auto;
 }
 
+.avatar {
+    position: relative;
+}
+
 .avatar img {
     width: 300px;
     height: 300px;
     box-shadow: 8px 8px 1px 1px rgba(0,0,0,.5);
     margin: 0;
+}
+
+.photoLoader {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 0, 0, .3);
+    opacity: 0;
+    cursor: pointer;
+}
+
+.photoLoader img {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    box-shadow: none;
+}
+
+.photoLoader input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.avatar:hover .photoLoader {
+    opacity: .8;
 }
 
 .description {

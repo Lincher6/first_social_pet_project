@@ -13,7 +13,6 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {appInitialize} from "./redux/appReducer";
 import HomePage from "./components/HomePage/HomePage";
-import MyProfilePage from "./components/ProfilePage/MyProfilePage";
 
 class App extends Component {
     componentDidMount() {
@@ -36,7 +35,6 @@ class App extends Component {
                             <div className={classes.content}>
                                 <Switch>
                                     <Route path={'/'} exact component={HomePage}/>
-                                    <Route path={'/profile'} exact component={MyProfilePage}/>
                                     <Route path={'/profile/:userId?'} component={ProfilePage}/>
                                     <Route path={'/dialogs/:userId?'} component={DialogsPage}/>
                                     <Route path={'/users'} component={UsersPage}/>

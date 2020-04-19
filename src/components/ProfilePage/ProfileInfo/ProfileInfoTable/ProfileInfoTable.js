@@ -6,7 +6,7 @@ import {ProfileInfoForm} from "../../../../forms/profileInfoForm/ProfileInfoForm
 const ProfileInfoFormik = withFormik({
     mapPropsToValues({
                          profileStatus, aboutMe, lookingForAJob,
-                         isAuth, updateProfileInfo, setProfileStatus,
+                         isOwner, updateProfileInfo, setProfileStatus,
                          profile, userId, fullName, lookingForAJobDescription
                      }) {
         return {
@@ -14,7 +14,7 @@ const ProfileInfoFormik = withFormik({
             aboutMe: aboutMe || 'None',
             lookingForAJob: lookingForAJob ? 'Да' : 'Нет',
             lookingForAJobDescription: lookingForAJobDescription || 'None',
-            isAuth, updateProfileInfo, setProfileStatus,
+            isOwner, updateProfileInfo, setProfileStatus,
             profile, userId, fullName}
     },
 

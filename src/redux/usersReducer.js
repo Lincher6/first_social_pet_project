@@ -1,23 +1,23 @@
 import {
     FOLLOW,
-    SET_CURRENT_PAGE, SET_SEARCH_VALUE,
+    SET_CURRENT_PAGE, SET_PORTION_NUMBER, SET_SEARCH_VALUE,
     SET_TOTAL_USER_COUNT,
     SET_USERS,
     TOGGLE_FOLLOWING_IN_PROGRESS,
     TOGGLE_IS_LOADING,
     UNFOLLOW
 } from "./actionTypes";
-import {dialogsAPI, usersAPI} from "../api/api";
-import actions from "redux-form/lib/actions";
+import {usersAPI} from "../api/api";
 
 const initialState = {
     users: [],
-    pageSize: 100,
+    pageSize: 50,
     totalUserCount: 0,
     currentPage: 1,
     isLoading: false,
     followingInProgress: [],
-    searchValue: ''
+    searchValue: '',
+    portionNumber: 1
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -82,6 +82,12 @@ export const usersReducer = (state = initialState, action) => {
                 searchValue: action.payload
             }
 
+        case SET_PORTION_NUMBER:
+            return {
+                ...state,
+                portionNumber: action.payload
+            }
+
         default:
             return state
     }
@@ -106,8 +112,13 @@ export const setCurrentPage = (page) => ({
 export const setTotalUserCount = (totalUserCount) => ({
     type: SET_TOTAL_USER_COUNT, totalUserCount
 })
+
 export const setSearchValue = (payload) => ({
     type: SET_SEARCH_VALUE, payload
+})
+
+export const setPortionNumber = payload => ({
+    type: SET_PORTION_NUMBER, payload
 })
 
 export const toggleIsLoading = (isLoading) => ({
@@ -118,7 +129,7 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({
     type: TOGGLE_FOLLOWING_IN_PROGRESS, isFetching, userId
 })
 
-export const getUsers = (searchValue, currentPage = 1, pageSize = 100) => async dispatch => {
+export const getUsers = (searchValue, currentPage = 1, pageSize = 50) => async dispatch => {
     dispatch(setSearchValue(searchValue))
     dispatch(setCurrentPage(currentPage))
     dispatch(toggleIsLoading(true))

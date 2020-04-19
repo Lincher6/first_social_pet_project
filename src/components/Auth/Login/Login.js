@@ -29,7 +29,7 @@ const Login = props => {
         : <div className={classes.login}>
             <div className={classes.title}>Вход</div>
             <LoginFormik />
-            {props.authError ? <div className={classes.error}>Неверный логин или пароль</div>: null}
+            {props.authError ? <div className={classes.error}>{props.authError}</div>: null}
         </div>
     )
 }
