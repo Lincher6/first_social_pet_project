@@ -17,7 +17,6 @@ const ProfilePage = props => {
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
-        props.getProfileStatus(userId)
         props.getProfile(userId)
     }, [props.match.params.userId])
 

@@ -4,7 +4,7 @@ import {
     SET_PROFILE,
     SET_PROFILE_STATUS,
     TOGGLE_IS_LOADING,
-    SET_PHOTO
+    SET_PHOTO, SET_POSTS
 } from "./actionTypes";
 import {profileAPI} from "../api/api";
 
@@ -14,25 +14,15 @@ let initialState = {
     currentProfileId: null,
     isLoading: false,
     profileStatus: null,
-    posts: [
-        {id: 1, postText: 'Hi, how are you?', likes: 5},
-        {id: 2, postText: 'It\'s my first post', likes: 13},
-        {id: 3, postText: 'Now second', likes: 22},
-        {id: 4, postText: 'And final', likes: 1},
-    ]
+    posts: []
 }
 
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
-            let newPost = {
-                id: 5,
-                postText: action.newPostText,
-                likes: Math.round(Math.random() * 100)
-            };
+        case SET_POSTS:
             return {
                 ...state,
-                posts: [...state.posts, newPost],
+                posts: action.payload
             }
 
         case SET_PROFILE:
@@ -71,8 +61,8 @@ export const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = (newPostText) => (
-    {type: ADD_POST, newPostText}
+export const setPostsAction = (payload) => (
+    {type: SET_POSTS, payload}
 )
 
 export const setProfile = profile => (
@@ -99,8 +89,10 @@ export const getProfile = (userId) => async dispatch => {
     dispatch(toggleIsLoading(true))
     const data = await profileAPI.getProfile(userId)
     const status = await profileAPI.getStatus(userId)
+    const posts = await profileAPI.getPosts()
     dispatch(setProfileStatusAction(status))
     dispatch(setProfile(data))
+    dispatch(setPostsAction(posts))
     dispatch(setCurrentProfileId(userId))
     dispatch(toggleIsLoading(false))
 }
@@ -124,4 +116,10 @@ export const updateProfileInfo = (profileId, profileData) => async dispatch => {
 export const setPhoto = (photo) => async dispatch => {
     const data = await profileAPI.setPhoto(photo)
     dispatch(setPhotoAC(data.data.photos))
+}
+
+export const addPost = (post) => async dispatch => {
+    await profileAPI.addPost(post)
+    const posts = await profileAPI.getPosts()
+    dispatch(setPostsAction(posts))
 }

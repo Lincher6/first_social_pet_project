@@ -10,8 +10,8 @@ const Post = props => {
             <div className={classes.message}>
                 {props.message}
             </div>
-            <div className={classes.likes}>
-                <span role='img' aria-labelledby="like"><FaThumbsUp/> </span>{props.likes}
+            <div className={classes.date}>
+                {props.date.toLocaleString()}
             </div>
         </div>
     )

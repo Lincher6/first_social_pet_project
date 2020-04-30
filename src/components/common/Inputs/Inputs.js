@@ -87,4 +87,5 @@ export const CheckBox = styled.input.attrs({ type: 'checkbox' })`
     width: 20px;
     height: 20px;
     margin: 10px;
+    margin-left: 0;
 `

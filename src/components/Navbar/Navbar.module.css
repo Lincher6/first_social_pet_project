@@ -26,6 +26,7 @@ img {
 
 .item {
     position: relative;
+    padding: 10px;
 }
 
 .newMessageCount {
@@ -56,6 +57,7 @@ img {
 
 .active .item {
     color: orange;
-    border-right: 4px solid red;
+    background: linear-gradient(0.25turn, transparent, rgba(250, 0, 0, .2));
+    border-right: 4px solid firebrick;
     transition: border-right-width .1s ease-in-out;
 }

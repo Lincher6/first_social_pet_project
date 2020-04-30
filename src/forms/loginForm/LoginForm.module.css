@@ -1,10 +1,14 @@
-.field {
+.loginField {
     position: relative;
     margin-bottom: 20px;
 }
 
+.passwordField {
+    position: relative;
+    margin-left: 0px;
+}
+
 .rememberMe {
-    margin-bottom: 10px;
     display: flex;
     align-items: center;
 }
@@ -23,4 +27,9 @@
     right: 0;
     text-shadow: 2px 2px 2px black;
 
+}
+
+.captcha {
+    width: 200px;
+    margin: 10px;
 }

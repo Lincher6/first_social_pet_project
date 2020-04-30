@@ -11,8 +11,8 @@ import {LoginForm} from "../../../forms/loginForm/LoginForm";
 const Login = props => {
 
     const LoginFormik = withFormik({
-        mapPropsToValues() {
-            return {login: '', password: ''}
+        mapPropsToValues({captchaUrl}) {
+            return {login: '', password: '', captcha: '', captchaUrl}
         },
         validationSchema: yup.object().shape({
             login: yup.string().min(3).required('обязательное поле'),
@@ -25,18 +25,23 @@ const Login = props => {
 
     return (
         props.isAuthorized
-        ? <Redirect to={'/profile'}/>
-        : <div className={classes.login}>
-            <div className={classes.title}>Вход</div>
-            <LoginFormik />
-            {props.authError ? <div className={classes.error}>{props.authError}</div>: null}
-        </div>
+            ? <Redirect to={'/profile'}/>
+            : <div className={classes.login}>
+                <div className={classes.title}>Вход</div>
+                <LoginFormik captchaUrl={props.captcha}/>
+                {props.authError ? <div className={classes.error}>{props.authError}</div> : null}
+                <div className={classes.test}>
+                    <div>Email: free@samuraijs.com</div>
+                    <div>Password: free</div>
+                </div>
+            </div>
     )
 }
 
 const mapStateToProps = state => ({
     isAuthorized: state.authReducer.isAuthorized,
-    authError: state.authReducer.authError
+    authError: state.authReducer.authError,
+    captcha: state.authReducer.captcha
 })
 
 const mapDispatchToProps = {

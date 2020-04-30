@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 import {MessageForm} from "../../../../forms/messageForm/MessageForm";
 import {withFormik} from "formik";
 import * as yup from 'yup'
-import {addPost} from "../../../../redux/profileReducer";
+import {addPost, setPosts} from "../../../../redux/profileReducer";
 import {connect} from "react-redux";
 
 const MyPosts = ({profile, ...props}) => {
@@ -18,6 +18,19 @@ const MyPosts = ({profile, ...props}) => {
         }
     })(MessageForm)
 
+    const dateFormat = (date) => new Date(date).toLocaleString(
+        'ru',
+        {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            timezone: 'UTC',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        }
+    )
+
     return(
         <div>
             <div className={classes.MyPosts}>
@@ -29,8 +42,8 @@ const MyPosts = ({profile, ...props}) => {
                         return (
                             <Post
                                 key={item.id}
-                                message={item.postText}
-                                likes={item.likes}
+                                message={item.title}
+                                date={dateFormat(item.addedDate)}
                                 smallPicture={profile ? profile.photos.small : null}
                             />
                         )

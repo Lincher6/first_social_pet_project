@@ -55,6 +55,16 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(response => response.data)
+    },
+
+    getPosts: () => {
+        return axiosInstance.get(`/todo-lists`)
+            .then(response => response.data)
+    },
+
+    addPost: (post) => {
+        return axiosInstance.post(`/todo-lists`, {title: post})
+            .then(response => response.data)
     }
 }
 
@@ -68,7 +78,8 @@ export const authAPI = {
         return axiosInstance.post(`/auth/login`, {
             email: data.login,
             password: data.password,
-            rememberMe: data.rememberMe
+            rememberMe: data.rememberMe,
+            captcha: data.captcha
         }).then(response => response.data)
     },
 
@@ -76,6 +87,11 @@ export const authAPI = {
         return axiosInstance.delete(`/auth/login`)
             .then(response => response.data)
     },
+
+    getCaptcha: () => {
+        return axiosInstance.delete(`security/get-captcha-url`)
+            .then(response => response.data)
+    }
 }
 
 export const dialogsAPI = {

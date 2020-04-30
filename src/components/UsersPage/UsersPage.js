@@ -10,6 +10,7 @@ import Pagination from "../common/Pagination/Pagination";
 const UsersPage = props => {
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         if (props.users.length === 0) {
             props.getUsers(props.searchValue)
         }

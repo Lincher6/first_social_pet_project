@@ -1,4 +1,5 @@
 .post {
+    position: relative;
     display: flex;
     box-shadow: 1px 1px 1px 1px black;
     border-radius: 5px;
@@ -7,6 +8,7 @@
     justify-items: center;
     background: #18191a;
     color: whitesmoke;
+    word-break: break-word;
 }
 
 .post img {
@@ -18,8 +20,13 @@
 
 .message {
     flex-grow: 1;
+    margin-bottom: 5px;
 }
 
-.likes {
-    width: 50px;
+.date {
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: .5;
 }
