@@ -1,9 +1,9 @@
 {
-  "main.css": "/My-Blog/static/css/main.239df5c4.chunk.css",
-  "main.js": "/My-Blog/static/js/main.c1fa3822.chunk.js",
-  "main.js.map": "/My-Blog/static/js/main.c1fa3822.chunk.js.map",
-  "static/js/1.dd27bc54.chunk.js": "/My-Blog/static/js/1.dd27bc54.chunk.js",
-  "static/js/1.dd27bc54.chunk.js.map": "/My-Blog/static/js/1.dd27bc54.chunk.js.map",
+  "main.css": "/My-Blog/static/css/main.24cb8600.chunk.css",
+  "main.js": "/My-Blog/static/js/main.3000c2d1.chunk.js",
+  "main.js.map": "/My-Blog/static/js/main.3000c2d1.chunk.js.map",
+  "static/js/1.09284331.chunk.js": "/My-Blog/static/js/1.09284331.chunk.js",
+  "static/js/1.09284331.chunk.js.map": "/My-Blog/static/js/1.09284331.chunk.js.map",
   "runtime~main.js": "/My-Blog/static/js/runtime~main.b45abeea.js",
   "runtime~main.js.map": "/My-Blog/static/js/runtime~main.b45abeea.js.map",
   "static/media/empty-avatar.png": "/My-Blog/static/media/empty-avatar.2da1ff8d.png",
@@ -20,9 +20,8 @@
   "static/media/BlobSound.ogg": "/My-Blog/static/media/BlobSound.ddf5f03e.ogg",
   "static/media/log-in.png": "/My-Blog/static/media/log-in.41ecc497.png",
   "static/media/register.png": "/My-Blog/static/media/register.8f14a4e6.png",
-  "static/media/plus.png": "/My-Blog/static/media/plus.81012bb8.png",
-  "static/css/main.239df5c4.chunk.css.map": "/My-Blog/static/css/main.239df5c4.chunk.css.map",
+  "static/css/main.24cb8600.chunk.css.map": "/My-Blog/static/css/main.24cb8600.chunk.css.map",
   "index.html": "/My-Blog/index.html",
-  "precache-manifest.deb775137c818ecb4da6fe34531d267f.js": "/My-Blog/precache-manifest.deb775137c818ecb4da6fe34531d267f.js",
+  "precache-manifest.db6fb20bd3efd4461f00e27d1e624a27.js": "/My-Blog/precache-manifest.db6fb20bd3efd4461f00e27d1e624a27.js",
   "service-worker.js": "/My-Blog/service-worker.js"
 }
