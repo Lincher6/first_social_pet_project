@@ -38,12 +38,12 @@ export const profileAPI = {
     },
 
     updateStatus: (status) => {
-        return axiosInstance.put(`/profile/status/`, {status})
+        return axiosInstance.put(`/profile/status/`, { status })
             .then(response => response.data)
     },
 
     updateProfileInfo: (profileData) => {
-        return axiosInstance.put(`/profile`, {...profileData})
+        return axiosInstance.put(`/profile`, { ...profileData })
             .then(response => response.data)
     },
 
@@ -63,7 +63,7 @@ export const profileAPI = {
     },
 
     addPost: (post) => {
-        return axiosInstance.post(`/todo-lists`, {title: post})
+        return axiosInstance.post(`/todo-lists`, { title: post })
             .then(response => response.data)
     }
 }
@@ -101,7 +101,7 @@ export const dialogsAPI = {
     },
 
     sendMessage: (userId, message) => {
-        return axiosInstance.post(`/dialogs/${userId}/messages`, {body: message})
+        return axiosInstance.post(`/dialogs/${userId}/messages`, { body: message })
             .then(response => response.data)
     },
 

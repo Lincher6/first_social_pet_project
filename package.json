@@ -2,7 +2,6 @@
   "name": "react-kabzda-1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lincher6.github.io/My-Blog/",
   "dependencies": {
     "axios": "^0.19.2",
     "formik": "^2.1.4",
@@ -28,7 +27,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

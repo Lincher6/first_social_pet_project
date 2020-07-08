@@ -11,7 +11,7 @@ const Navbar = props => {
     return <nav className={classes.nav}>
         <div className={classes.logo}>
             <NavLink to={'/'}>
-                <img src={logo} alt=''/>
+                <img src={'assets/images/icons/umbrella-logo.png'} alt=''/>
             </NavLink>
         </div>
         <div className={classes.page}>
